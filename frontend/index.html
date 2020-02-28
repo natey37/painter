@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Motivation</title>
+</head>
+
+<body class='container center'>
+    <div class="container"> 
+        <div class="row buffer-small">
+            
+        </div>
+    </div>
+    <div id="button-group">
+        <button class="btn-info button-selected">Select</button>
+        <button class="btn-info">Circle</button>
+        <button class="btn-info">Square</button>
+        <button class="btn-info">Custom Circle</button>
+        <button class="btn-info">Custom Square</button>
+        <button class="btn-info">Custom Path</button>
+        <div class="toolbox">
+            <div class="slidecontainer">
+            Size:   <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <span id="size-of-shape">50</span>
+            </div>
+        </div>
+    </div>  
+    <div class="row">
+        <div class="canvas-box" style="width: 800px">
+            <svg id="canvas-box" width="100%" height="100%">
+
+            </svg>
+        </div>
+        <div class="layers-panel">
+            <ul id="layers-list"></ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="properties-panel">
+            <p>Selected: <span id="shape-selected"></span></p>
+            <p>Width: <span id="shape-width"></span></p>
+            <p>Height: <span id="shape-height"></span></p>
+            <p>Color: <span id="shape-color"></span></p>
+            <button> Remove</button>
+            <br>
+            <button id="save">Save</button>
+        </div>
+        <div class="color-picker">
+            <form id="color-form">
+                <label for="r" >Red</label>
+                <input class="color-input" id="r" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" name="cvv" value="255"/>
+                <div class="slidecontainer">
+                    <input class="sliders" type="range" min="0" max="255" value="255" class="slider" id="slider-r">
+                </div>
+                <label for="g">Green</label>
+                <input class="color-input" id="g" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" name="cvv" value="200"/>
+                <div class="slidecontainer">
+                    <input class="sliders" type="range" min="0" max="255" value="200" class="slider" id="slider-g"> 
+                </div>
+                <label for="b">Blue</label>
+                <input class="color-input" id="b" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" name="cvv" value="0"/>
+                <div class="slidecontainer">
+                    <input class="sliders" type="range" min="0" max="255" value="0" class="slider" id="slider-b">
+                </div>
+                <div class="color-box" id="color-box" style="background-color: rgb(255,200,0);">
+            </form>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="src/index.js"></script>
+</body>
+
+</html>
