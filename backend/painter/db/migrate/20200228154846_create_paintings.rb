@@ -3,7 +3,7 @@ class CreatePaintings < ActiveRecord::Migration[6.0]
     create_table :paintings do |t|
       t.string :name
       t.string :svgInner
-      t.integer :userId
+      t.integer :user_id
 
       t.timestamps
     end

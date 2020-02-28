@@ -526,7 +526,20 @@ document.addEventListener("DOMContentLoaded", function(){
        // for the saving pictures to the DB 
        document.addEventListener("click", function(event){
            if(event.target.id === "save"){
-               
+               let name = "Add Name Field"
+               let svgInner = `'${svg.innerHTML}'`
+               console.log(svgInner)
+               fetch("http://localhost:3000/paintings", {
+                   method: 'POST',
+                   headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                  },
+                  body: JSON.stringify({
+                    name: name, 
+                    svgInner: svgInner, 
+                    user_id: 1
+                  })
+               })
            }
        })
 
@@ -534,7 +547,7 @@ document.addEventListener("DOMContentLoaded", function(){
        function paintingRender(response){
            let innerHTMLArr = response.map(painting => {
                return `
-               <h6> ${painting.name} </h6>
+               <h6> ${painting.name} - ${painting.user} </h6>
                <svg> ${painting.svgInner} </svg>
                `
            })

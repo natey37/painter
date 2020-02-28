@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_02_28_162035) do
   create_table "paintings", force: :cascade do |t|
     t.string "name"
     t.string "svgInner"
-    t.integer "userId"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

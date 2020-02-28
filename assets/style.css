@@ -107,3 +107,7 @@ img {
   #canvas-box {
     border: solid
   }
+
+  #paintings-ul {
+    color: white
+  }
