@@ -1,7 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", function(){
 
-
+   const paintingUL = document.getElementById("paintings-ul") 
    const svg = document.getElementById("canvas-box")
    const smallBox = document.getElementById("small-box")
    let selected = "Square"
@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function(){
    let size = document.getElementById("size-of-shape")
    let currentSize = 50
    let selectedShape = ""
+
+   
    
    //properties panel variables
    let panelShape = document.getElementById("shape-selected")
@@ -438,6 +440,7 @@ document.addEventListener("DOMContentLoaded", function(){
        function removeShape(){
            selectedShape.remove()
        }
+
    
        function clearSelected(){
            selectedShape = ""
@@ -519,6 +522,36 @@ document.addEventListener("DOMContentLoaded", function(){
            colorBox.style.backgroundColor = newrgb
            
        })
+
+       // for the saving pictures to the DB 
+       document.addEventListener("click", function(event){
+           if(event.target.id === "save"){
+               
+           }
+       })
+
+       //render paintings in the UL function 
+       function paintingRender(response){
+           let innerHTMLArr = response.map(painting => {
+               return `
+               <h6> ${painting.name} </h6>
+               <svg> ${painting.svgInner} </svg>
+               `
+           })
+            paintingUL.innerHTML = innerHTMLArr.join("")
+       }
+
+
+       // fetches 
+       fetch("http://localhost:3000/paintings")
+           .then(response => response.json())
+           .then(response => {
+            console.log(response)
+            paintingRender(response)
+           })
+
+
+
    
    
    })
