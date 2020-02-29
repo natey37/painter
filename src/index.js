@@ -527,7 +527,7 @@ document.addEventListener("DOMContentLoaded", function(){
        document.addEventListener("click", function(event){
            if(event.target.id === "save"){
                let name = "Add Name Field"
-               let svgInner = `'${svg.innerHTML}'`
+               let svgInner = svg.innerHTML
                console.log(svgInner)
                fetch("http://localhost:3000/paintings", {
                    method: 'POST',
@@ -535,8 +535,8 @@ document.addEventListener("DOMContentLoaded", function(){
                     'Content-Type': 'application/json;charset=utf-8'
                   },
                   body: JSON.stringify({
-                    name: name, 
-                    svgInner: svgInner, 
+                    name: "Final Test", 
+                    svgInner: svgInner,  
                     user_id: 1
                   })
                })
