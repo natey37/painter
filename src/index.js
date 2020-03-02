@@ -539,6 +539,12 @@ document.addEventListener("DOMContentLoaded", function(){
                     svgInner: svgInner,  
                     user_id: 1
                   })
+               }).then(response => response.json())
+               .then(painting => {
+                paintingUL.innerHTML += `
+                <h6> ${painting.name} - ${painting.user} </h6>
+                <svg id =${painting.id}> ${painting.svgInner} </svg>
+                `
                })
            }
        })
@@ -548,7 +554,7 @@ document.addEventListener("DOMContentLoaded", function(){
            let innerHTMLArr = response.map(painting => {
                return `
                <h6> ${painting.name} - ${painting.user} </h6>
-               <svg> ${painting.svgInner} </svg>
+               <svg id =${painting.id}> ${painting.svgInner} </svg>
                `
            })
             paintingUL.innerHTML = innerHTMLArr.join("")
