@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function(){
    let size = document.getElementById("size-of-shape")
    let currentSize = 50
    let selectedShape = ""
+   const nameForm = document.getElementById("painting-name-form")
 
    
    
@@ -523,29 +524,33 @@ document.addEventListener("DOMContentLoaded", function(){
            
        })
 
-       // for the saving pictures to the DB 
+       
        document.addEventListener("click", function(event){
            if(event.target.id === "save"){
-               let name = "Add Name Field"
-               let svgInner = svg.innerHTML
-               console.log(svgInner)
-               fetch("http://localhost:3000/paintings", {
-                   method: 'POST',
-                   headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                  },
-                  body: JSON.stringify({
-                    name: "Final Test", 
-                    svgInner: svgInner,  
-                    user_id: 1
-                  })
-               }).then(response => response.json())
-               .then(painting => {
-                paintingUL.innerHTML += `
-                <h6> ${painting.name} - ${painting.user} </h6>
-                <svg id =${painting.id}> ${painting.svgInner} </svg>
-                `
-               })
+               if(nameForm.children[2].value.length < 1){
+                    alert("A Painting needs a name!")
+               } else {
+                let name = "Add Name Field"
+                let svgInner = svg.innerHTML
+                console.log(svgInner)
+                fetch("http://localhost:3000/paintings", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: JSON.stringify({
+                        name: nameForm.children[2].value,
+                        svgInner: svgInner,  
+                        user_id: 1
+                    })
+                }).then(response => response.json())
+                .then(painting => {
+                    paintingUL.innerHTML += `
+                    <h6> ${painting.name} - ${painting.user} </h6>
+                    <svg id =${painting.id}> ${painting.svgInner} </svg>
+                    `
+                })
+              }
            }
        })
 
@@ -553,8 +558,8 @@ document.addEventListener("DOMContentLoaded", function(){
        function paintingRender(response){
            let innerHTMLArr = response.map(painting => {
                return `
-               <h6> ${painting.name} - ${painting.user} </h6>
-               <svg id =${painting.id}> ${painting.svgInner} </svg>
+               <h6> ${painting.name} </h6>
+               <svg id =${painting.id} class="svg-collection"> ${painting.svgInner} </svg>
                `
            })
             paintingUL.innerHTML = innerHTMLArr.join("")
