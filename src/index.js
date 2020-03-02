@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", function(){
    let currentSize = 50
    let selectedShape = ""
    const nameForm = document.getElementById("painting-name-form")
+   const propertiesPannel = document.getElementsByClassName("properties-panel")
+   const newPainting = document.getElementById("new-painting")
+   let paintings;
 
    
    
@@ -530,7 +533,7 @@ document.addEventListener("DOMContentLoaded", function(){
                if(nameForm.children[2].value.length < 1){
                     alert("A Painting needs a name!")
                } else {
-                let name = "Add Name Field"
+                let name = nameForm.children[2].value
                 let svgInner = svg.innerHTML
                 console.log(svgInner)
                 fetch("http://localhost:3000/paintings", {
@@ -540,17 +543,22 @@ document.addEventListener("DOMContentLoaded", function(){
                     },
                     body: JSON.stringify({
                         name: nameForm.children[2].value,
-                        svgInner: svgInner,  
-                        user_id: 1
+                        svgInner: svg.innerHTML,  
+                        user_id: 3
                     })
                 }).then(response => response.json())
                 .then(painting => {
                     paintingUL.innerHTML += `
-                    <h6> ${painting.name} - ${painting.user} </h6>
+                    <h6> ${painting.name}  </h6>
                     <svg id =${painting.id}> ${painting.svgInner} </svg>
                     `
                 })
               }
+           } else if(event.target.className === "svg-collection"){
+            const selectedPaintingH = document.getElementById(event.target.id)
+            renderPaintingRO(selectedPaintingH)
+           } else if(event.target.id === "new-painting"){
+            location.reload()
            }
        })
 
@@ -558,8 +566,8 @@ document.addEventListener("DOMContentLoaded", function(){
        function paintingRender(response){
            let innerHTMLArr = response.map(painting => {
                return `
-               <h6> ${painting.name} </h6>
-               <svg id =${painting.id} class="svg-collection"> ${painting.svgInner} </svg>
+               <h6 id =${painting.id} class="svg-collection"> ${painting.name} </h6>
+               <svg id =${painting.id} > ${painting.svgInner} </svg>
                `
            })
             paintingUL.innerHTML = innerHTMLArr.join("")
@@ -571,9 +579,19 @@ document.addEventListener("DOMContentLoaded", function(){
            .then(response => response.json())
            .then(response => {
             console.log(response)
+            paintings = response
             paintingRender(response)
            })
 
+       
+       // functions 
+       function renderPaintingRO(selectedPaintingH){
+        let myPainting = paintings.find(painting => painting.id == selectedPaintingH.id)
+        svg.innerHTML = myPainting.svgInner
+        buttonGroup.remove()
+        propertiesPannel[0].remove()
+        colorInput.remove()
+       } 
 
 
    
