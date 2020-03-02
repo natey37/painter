@@ -544,7 +544,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     body: JSON.stringify({
                         name: nameForm.children[2].value,
                         svgInner: svg.innerHTML,  
-                        user_id: 3
+                        user_id: 1
                     })
                 }).then(response => response.json())
                 .then(painting => {

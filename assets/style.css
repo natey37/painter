@@ -65,7 +65,7 @@ img {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: rgb(55, 212, 226);
   }
   
   li {
@@ -76,7 +76,7 @@ img {
     display: block;
     color: rgb(255, 255, 255);
     text-align: center;
-    padding: 14px 16px;
+    padding: 19px 18px;
     text-decoration: none;
   }
   
@@ -93,12 +93,6 @@ img {
       color: rgb(115, 158, 251)
   }
 
-  h3 {
-      background-color: rgb(18, 143, 18);
-      padding: 0;
-      margin: 0;
-  }
-
   img {
     width: 100%;
     height: auto;
@@ -111,3 +105,79 @@ img {
   #paintings-ul {
     color: white
   }
+
+  .grid-container {
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto ;
+    grid-template-rows: 60px 60px auto auto auto auto auto auto auto auto;
+
+    display: grid;
+    /* grid-template-columns: auto auto auto auto; */
+    background-color: rgb(78, 78, 78);
+    /* padding: 10px; */
+    height: 100vh;
+    width: 100vw;
+
+  }
+  .grid-item {
+    /* align-content: center; */
+
+    /* background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8); */
+    /* padding: 20px; */
+    font-size: 12px;
+    /* text-align: center;  */
+  }
+
+  #item1 {
+    grid-row-start: 1;
+    grid-row-end: 10;  
+    max-height: calc(100vh - .5rem);
+    overflow-y: auto;  
+  }
+
+  #item2 {
+      grid-column-start: 2;
+      grid-column-end: 12;
+
+  }
+
+  #item3 {
+      grid-column-start: 2;
+      grid-column-end: 10;
+      float: right;
+  }
+
+  #item4 {
+      grid-column-start: 2;
+      grid-column-end: 10;
+    grid-row-start: 3;
+    grid-row-end: 10;
+    border: solid;
+  }
+
+  #item5 {
+      grid-column-start: 10;
+      grid-column-end: 10;
+      grid-row-start: 3;
+    grid-row-end: 4;
+  }
+
+  #item6 {
+    grid-column-start: 10;
+    grid-column-end: 10;
+    grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#leftCol {
+  position: fixed;
+  width: 150px;
+  overflow-y: scroll;
+  top: 0;
+  bottom: 0;
+}
+
+.WhateverYourNavIs {
+  max-height: calc(100vh - 9rem);
+  overflow-y: auto;
+}
