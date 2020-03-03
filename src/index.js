@@ -1,6 +1,20 @@
 
-document.addEventListener("DOMContentLoaded", function(){
 
+
+document.addEventListener("DOMContentLoaded", function(){
+    
+        
+    const color123 = document.getElementById("color-123")
+    console.log(color123)
+    color123.addEventListener("input", function(event){
+        svg.backgroundColor = color123.value
+        console.log(svg.backgroundColor)
+        console.log(event.target)
+        console.log(color123.value)
+        console.log("HI")
+
+    })
+    
    const paintingUL = document.getElementById("paintings-ul") 
    const svg = document.getElementById("canvas-box")
    const smallBox = document.getElementById("small-box")

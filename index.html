@@ -32,15 +32,15 @@
 
     <div class="grid-item" id="item3" style="text-align: center;">
         <div id="button-group" style="float: center;">
-            <button class="btn-info">Select</button>
-            <button class="btn-info">Circle</button>
-            <button class="btn-info">Square</button>
-            <button class="btn-info">Custom Circle</button>
-            <button class="btn-info">Custom Square</button>
-            <button class="btn-info">Custom Path</button>
+            <button style="background-color: blueviolet" class="btn-info">Select</button>
+            <button style="background-color: rgb(43, 189, 226)" class="btn-info">Circle</button>
+            <button style="background-color: rgb(236, 226, 82)" class="btn-info">Square</button>
+            <button style="background-color: rgb(84, 96, 211)" class="btn-info">Custom Circle</button>
+            <button style="background-color: rgb(226, 43, 180)" class="btn-info">Custom Square</button>
+            <button style="background-color: rgb(110, 226, 43)"class="btn-info">Custom Path</button>
             <div class="toolbox">
                 <div class="slidecontainer">
-                Size:   <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    Size:<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
                 <span id="size-of-shape">50</span>
                 </div>
             </div>
@@ -53,7 +53,13 @@
 
         </svg>
         <div class="layers-panel">
-            <ul id="layers-list"></ul>
+            <ul id="layers-list" style="visibility: hidden;"></ul>
+        </div>
+    </div>
+
+    <div class="grid-item" id="item7">
+        <div style="background-color: cornflowerblue;">
+            <img src="assets/p4.png" style="width: 20px; height: 20px;">Andrew Richards, Big Table LLC
         </div>
     </div>
 
@@ -74,7 +80,9 @@
         
     </div>
 
+
     <div class="grid-item" id="item6">
+        Background Color<input id="color-123" name="Color Picker" type="color"/>
       <div class="color-picker">
         <form id="color-form">
             <label for="r" >Red</label>
@@ -95,8 +103,8 @@
             <div class="color-box" id="color-box" style="background-color: rgb(255,200,0);">
         </form>
       </div>
-        
     </div>
+
 
 </div>
 
