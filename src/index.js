@@ -618,7 +618,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     let myPaintingsInnerHTML = response.map(painting => {
                         return `
                         <div class="grid-item" id="item4">
-                            <svg id="canvas-box" width="100%" height="100%" style=${painting.background_color}; border: solid"> 
+                            <svg id="canvas-box" width="100%" height="100%" style= "background-color: ${painting.background_color}; border: solid;"> 
                                 ${painting.svgInner}
                             </svg>
                         </div> 
@@ -636,7 +636,7 @@ document.addEventListener("DOMContentLoaded", function(){
                let foundUser = users.find(user => user.id === painting.user_id)
                return `
                <h6 id =${painting.id} class="svg-collection"> ${painting.name} - ${foundUser.name} </h6>
-               <svg id =${painting.id} > ${painting.svgInner} </svg>
+               <svg id =${painting.id} style = "background-color:${painting.background_color}"> ${painting.svgInner} </svg>
                `
            })
             paintingUL.innerHTML = innerHTMLArr.join("")
@@ -664,7 +664,7 @@ document.addEventListener("DOMContentLoaded", function(){
        function renderPaintingRO(selectedPaintingH){
             let myPainting = paintings.find(painting => painting.id == selectedPaintingH.id)
             canvasDiv.innerHTML =
-                        `<svg id="canvas-box" width="100%" height="100%" style=${myPainting.background_color}> 
+                        `<svg id="canvas-box" width="100%" height="100%" style= "background-color: ${myPainting.background_color}"> 
                             ${myPainting.svgInner}
                         </svg>`
             removeToolBars()
