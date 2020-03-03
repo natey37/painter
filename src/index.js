@@ -36,13 +36,10 @@ document.addEventListener("DOMContentLoaded", function(){
         })
       })
 
-    const color123 = document.getElementById("color-123")
-    color123.addEventListener("input", function(event){
-        svg.backgroundColor = color123.value
-        console.log(svg.backgroundColor)
-        console.log(event.target)
-        console.log(color123.value)
-        console.log("HI")
+    const backgroundColor = document.getElementById("background-svg")
+    backgroundColor.addEventListener("input", function(event){
+        console.log(svg)
+        svg.style.backgroundColor = backgroundColor.value
 
     })
     
@@ -556,21 +553,26 @@ document.addEventListener("DOMContentLoaded", function(){
        let sliderG = document.getElementById("slider-g")
        let sliderB = document.getElementById("slider-b")
        //let sliders = document.getElementsByClassName("sliders")
-   
-       colorInput.addEventListener("change", function(e){
-           
-           if (e.target.className === "sliders"){
-               colorR.value = sliderR.value
-               colorG.value = sliderG.value
-               colorB.value = sliderB.value
+       
+       const fillElement = document.getElementById("fill-element-svg")
+
+       fillElement.addEventListener("input", function(e){
+           if(selectShape){
+               selectedShape.setAttribute("fill", fillElement.value)
+               selectedShape.dataset["color"] = fillElement.value
            }
+        //    if (e.target.className === "sliders"){
+        //        colorR.value = sliderR.value
+        //        colorG.value = sliderG.value
+        //        colorB.value = sliderB.value
+        //    }
    
-           let newrgb = `rgb(${colorR.value}, ${colorG.value}, ${colorB.value})`
-           if (selectedShape){
-           selectedShape.setAttribute("fill", newrgb)
-           selectedShape.dataset["color"] = newrgb
-           }
-           colorBox.style.backgroundColor = newrgb
+        //    let newrgb = `rgb(${colorR.value}, ${colorG.value}, ${colorB.value})`
+        //    if (selectedShape){
+        //    selectedShape.setAttribute("fill", newrgb)
+        //    selectedShape.dataset["color"] = newrgb
+        //    }
+        //    colorBox.style.backgroundColor = newrgb
            
        })
 
@@ -650,7 +652,12 @@ document.addEventListener("DOMContentLoaded", function(){
                         `<svg id="canvas-box" width="100%" height="100%" style="background-color: white;"> 
                             ${myPainting.svgInner}
                         </svg>`
-            removeToolBars()
+            const item3 = document.getElementById("item3")
+            const item5 = document.getElementById("item5")
+            const item6 = document.getElementById("item6")
+            item3.style.visibility = "hidden"
+            item5.style.visibility = "hidden"
+            item6.style.visibility = "hidden"            
        } 
 
        function removeToolBars(){
