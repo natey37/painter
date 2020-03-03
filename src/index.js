@@ -613,9 +613,13 @@ document.addEventListener("DOMContentLoaded", function(){
                 .then(response => response.json())
                 .then(response => {
                     let myPaintingsInnerHTML = response.map(painting => {
-                        return `<svg id="canvas-box" width="100%" height="100%" style="background-color: white;"> 
-                            ${painting.svgInner}
-                        </svg>`
+                        return `
+                        <div class="grid-item" id="item4">
+                            <svg id="canvas-box" width="100%" height="100%" style="background-color: white; border: solid"> 
+                                ${painting.svgInner}
+                            </svg>
+                        </div> 
+                            `
                     })
                     canvasDiv.innerHTML = myPaintingsInnerHTML.join("")
                     removeToolBars()
@@ -664,8 +668,5 @@ document.addEventListener("DOMContentLoaded", function(){
         item5.style.visibility = "hidden"
         item6.style.visibility = "hidden"      
        }
-
-
-   
    
    })
