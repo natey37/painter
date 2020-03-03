@@ -175,6 +175,7 @@ img {
     grid-column-end: 10;
     grid-row-start: 4;
   grid-row-end: 5;
+  color: white;
 }
 
 #item7 {
@@ -202,28 +203,16 @@ img {
 #login{
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 45%;
   margin-top: -50px;
   margin-left: -50px;
-  width: 100px;
-  height: 100px;
+  width: 400px;
+  height: 400px;
 }​
 
-/* Style the form - display items horizontally */
-.form-inline {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  
-}
-
-/* Add some margins for each label */
-.form-inline label {
-  margin: 5px 10px 5px 0;
-}
 
 /* Style the input fields */
-.form-inline input {
+#login-input {
   vertical-align: middle;
   margin: 5px 10px 5px 0;
   padding: 10px;
@@ -232,25 +221,9 @@ img {
 }
 
 /* Style the submit button */
-.form-inline button {
+#login-submit {
   padding: 10px 20px;
-  background-color: dodgerblue;
+  background-color: rgb(72, 20, 243);
   border: 1px solid #ddd;
   color: white;
 }
-
-.form-inline button:hover {
-  background-color: royalblue;
-}
-
-/* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide
-@media (max-width: 800px) {
-  .form-inline input {
-    margin: 10px 0;
-  }
-
-  .form-inline {
-    flex-direction: column;
-    align-items: stretch;
-  }
-} */

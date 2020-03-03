@@ -9,17 +9,10 @@
 
 <div class="grid-container">
     <div id="overlay">
-        <div id="login">
-          <form class="form-inline">
-            <input style="float: right;" type="text" placeholder="Enter Username" name="uname" required>
-            <br>
-            <button id="login-submit" type="submit">Submit</button>
-          </form>
-        </div>
-        <!-- <div id="login" >
-            <input type="text" placeholder="Enter Username" name="uname" required>
-            <button id="login-submit" style="text-align: center; float: left" input="submit">Login</button>
-        </div> -->
+        <form id="login">
+            <input id="login-input" type="text" placeholder="Enter Username" name="uname" required>
+            <button id="login-submit" style="text-align: center" input="submit">Login</button>
+        </form>
     </div>
 
     <div class="grid-item" id="item1">
@@ -78,12 +71,12 @@
 
     <div class="grid-item" id="item5">
         <div class="row">
-            <div class="properties-panel">
+            <!-- <div class="properties-panel">
             <p>Selected: <span id="shape-selected"></span></p>
             <p>Width: <span id="shape-width"></span></p>
             <p>Height: <span id="shape-height"></span></p>
-            <p>Color: <span id="shape-color"></span></p>
-            <button id="remove" class="btn-danger">Remove</button>
+            <p>Color: <span id="shape-color"></span></p> -->
+            <!-- <button id="remove" class="btn-danger">Remove</button> -->
             <form id="painting-name-form">
                 <label for="name">Painting Name</label><br>
                 <input type="text" id="name" name="name" ><br>
@@ -95,8 +88,11 @@
 
 
     <div class="grid-item" id="item6">
-        Background Color<input id="color-123" name="Color Picker" type="color"/>
-      <div class="color-picker">
+        Background Color: <input id="background-svg" name="Color Picker" type="color"/><br><br>
+        Shape Color: <input id="fill-element-svg" name="Color Picker" type="color"/><br><br>
+        <button id="remove" class="btn-danger">Remove</button>
+
+      <!-- <div class="color-picker">
         <form id="color-form">
             <label for="r" >Red</label>
             <input class="color-input" id="r" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" name="cvv" value="255"/>
@@ -115,7 +111,7 @@
             </div>
             <div class="color-box" id="color-box" style="background-color: rgb(255,200,0);">
         </form>
-      </div>
+      </div> -->
     </div>
 
 

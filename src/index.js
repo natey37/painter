@@ -1,9 +1,9 @@
- 
    
 
     
 
 document.addEventListener("DOMContentLoaded", function(){
+ let selectedUserId = null 
     on()
     
     function on() {
@@ -14,20 +14,32 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("overlay").style.display = "none";
       }
 
-      const login = document.getElementById("login-submit")
-      login.addEventListener("click", () => {
-          event.preventDefault()
-          off()
+      
+      document.addEventListener("submit", () => {
+        event.preventDefault()
+        console.log(loginForm)
+        let name = loginForm.elements[0].value
+        fetch("http://localhost:3000/users",{
+            method: "POST", 
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+              },
+              body: JSON.stringify({
+                  name: name
+              })
+
+        }).then(response => response.json())
+        .then(response => {
+            selectedUserId = response.id
+            console.log(selectedUserId)
+            off()
+        })
       })
-    
-    const color123 = document.getElementById("color-123")
-    console.log(color123)
-    color123.addEventListener("input", function(event){
-        svg.backgroundColor = color123.value
-        console.log(svg.backgroundColor)
-        console.log(event.target)
-        console.log(color123.value)
-        console.log("HI")
+
+    const backgroundColor = document.getElementById("background-svg")
+    backgroundColor.addEventListener("input", function(event){
+        console.log(svg)
+        svg.style.backgroundColor = backgroundColor.value
 
     })
     
@@ -44,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function(){
    const nameForm = document.getElementById("painting-name-form")
    const propertiesPannel = document.getElementsByClassName("properties-panel")
    const newPainting = document.getElementById("new-painting")
+   const loginForm = document.getElementById("login")
    let paintings;
 
    
@@ -539,21 +552,26 @@ document.addEventListener("DOMContentLoaded", function(){
        let sliderG = document.getElementById("slider-g")
        let sliderB = document.getElementById("slider-b")
        //let sliders = document.getElementsByClassName("sliders")
-   
-       colorInput.addEventListener("change", function(e){
-           
-           if (e.target.className === "sliders"){
-               colorR.value = sliderR.value
-               colorG.value = sliderG.value
-               colorB.value = sliderB.value
+       
+       const fillElement = document.getElementById("fill-element-svg")
+
+       fillElement.addEventListener("input", function(e){
+           if(selectShape){
+               selectedShape.setAttribute("fill", fillElement.value)
+               selectedShape.dataset["color"] = fillElement.value
            }
+        //    if (e.target.className === "sliders"){
+        //        colorR.value = sliderR.value
+        //        colorG.value = sliderG.value
+        //        colorB.value = sliderB.value
+        //    }
    
-           let newrgb = `rgb(${colorR.value}, ${colorG.value}, ${colorB.value})`
-           if (selectedShape){
-           selectedShape.setAttribute("fill", newrgb)
-           selectedShape.dataset["color"] = newrgb
-           }
-           colorBox.style.backgroundColor = newrgb
+        //    let newrgb = `rgb(${colorR.value}, ${colorG.value}, ${colorB.value})`
+        //    if (selectedShape){
+        //    selectedShape.setAttribute("fill", newrgb)
+        //    selectedShape.dataset["color"] = newrgb
+        //    }
+        //    colorBox.style.backgroundColor = newrgb
            
        })
 
@@ -574,7 +592,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     body: JSON.stringify({
                         name: nameForm.children[2].value,
                         svgInner: svg.innerHTML,  
-                        user_id: 1
+                        user_id: selectedUserId
                     })
                 }).then(response => response.json())
                 .then(painting => {
@@ -618,9 +636,16 @@ document.addEventListener("DOMContentLoaded", function(){
        function renderPaintingRO(selectedPaintingH){
         let myPainting = paintings.find(painting => painting.id == selectedPaintingH.id)
         svg.innerHTML = myPainting.svgInner
-        buttonGroup.remove()
-        propertiesPannel[0].remove()
-        colorInput.remove()
+        const item3 = document.getElementById("item3")
+        const item5 = document.getElementById("item5")
+        const item6 = document.getElementById("item6")
+        item3.style.visibility = "hidden"
+        item5.style.visibility = "hidden"
+        item6.style.visibility = "hidden"
+
+        // buttonGroup.remove()
+        // propertiesPannel[0].remove()
+        // colorInput.remove()
        } 
 
 
