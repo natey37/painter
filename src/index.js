@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function(){
    const propertiesPannel = document.getElementsByClassName("properties-panel")
    const newPainting = document.getElementById("new-painting")
    const loginForm = document.getElementById("login")
+   const canvasDiv = document.getElementById("item4")
    let paintings;
 
    
@@ -589,7 +590,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     },
                     body: JSON.stringify({
                         name: nameForm.children[2].value,
-                        svgInner: svg.innerHTML,  
+                        svgInner: svg.innerHTML,   
                         user_id: selectedUserId
                     })
                 }).then(response => response.json())
@@ -605,6 +606,18 @@ document.addEventListener("DOMContentLoaded", function(){
             renderPaintingRO(selectedPaintingH)
            } else if(event.target.id === "new-painting"){
             location.reload()
+           } else if(event.target.id === "my-paintings"){
+                fetch(`http://localhost:3000/users/${selectedUserId}`)
+                .then(response => response.json())
+                .then(response => {
+                    let myPaintingsInnerHTML = response.map(painting => {
+                        return `<svg id="canvas-box" width="100%" height="100%" style="background-color: white;"> 
+                            ${painting.svgInner}
+                        </svg>`
+                    })
+                    canvasDiv.innerHTML = myPaintingsInnerHTML.join("")
+                    removeToolBars()
+                })
            }
        })
 
@@ -632,12 +645,19 @@ document.addEventListener("DOMContentLoaded", function(){
        
        // functions 
        function renderPaintingRO(selectedPaintingH){
-        let myPainting = paintings.find(painting => painting.id == selectedPaintingH.id)
-        svg.innerHTML = myPainting.svgInner
+            let myPainting = paintings.find(painting => painting.id == selectedPaintingH.id)
+            canvasDiv.innerHTML =
+                        `<svg id="canvas-box" width="100%" height="100%" style="background-color: white;"> 
+                            ${myPainting.svgInner}
+                        </svg>`
+            removeToolBars()
+       } 
+
+       function removeToolBars(){
         buttonGroup.remove()
         propertiesPannel[0].remove()
         colorInput.remove()
-       } 
+       }
 
 
    
