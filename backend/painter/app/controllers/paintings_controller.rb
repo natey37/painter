@@ -11,7 +11,7 @@ class PaintingsController < ApplicationController
   end 
 
   def paintingParams 
-    params.require(:painting).permit(:name, :svgInner, :user_id)
+    params.require(:painting).permit(:name, :svgInner, :background_color, :user_id)
   end 
 
 end

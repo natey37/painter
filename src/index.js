@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function(){
     backgroundColor.addEventListener("input", function(event){
         console.log(svg)
         svg.style.backgroundColor = backgroundColor.value
-
+        console.log(svg.style.backgroundColor)
     })
     
    const paintingUL = document.getElementById("paintings-ul") 
@@ -582,24 +582,27 @@ document.addEventListener("DOMContentLoaded", function(){
                if(nameForm.children[2].value.length < 1){
                     alert("A Painting needs a name!")
                } else {
-                let name = nameForm.children[2].value
-                let svgInner = svg.innerHTML
-                console.log(svgInner)
+                console.log(svg)
+                let svgBackgroundColor = svg.style.backgroundColor
+                console.log(svg.style.backgroundColor)
+                let paintingObj = 
+                    {
+                        name: nameForm.children[2].value,
+                        svgInner: svg.innerHTML,
+                        background_color: svgBackgroundColor,  
+                        user_id: selectedUser.id
+                    }
                 fetch("http://localhost:3000/paintings", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8'
                     },
-                    body: JSON.stringify({
-                        name: nameForm.children[2].value,
-                        svgInner: svg.innerHTML,   
-                        user_id: selectedUser.id
-                    })
+                    body: JSON.stringify(paintingObj)
                 }).then(response => response.json())
                 .then(painting => {
                     paintingUL.innerHTML += `
                     <h6> ${painting.name}  </h6>
-                    <svg id =${painting.id}> ${painting.svgInner} </svg>
+                    <svg style=${painting.background_color} id =${painting.id}> ${painting.svgInner} </svg>
                     `
                 })
               }
@@ -615,7 +618,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     let myPaintingsInnerHTML = response.map(painting => {
                         return `
                         <div class="grid-item" id="item4">
-                            <svg id="canvas-box" width="100%" height="100%" style="background-color: white; border: solid"> 
+                            <svg id="canvas-box" width="100%" height="100%" style=${painting.background_color}; border: solid"> 
                                 ${painting.svgInner}
                             </svg>
                         </div> 
@@ -661,7 +664,7 @@ document.addEventListener("DOMContentLoaded", function(){
        function renderPaintingRO(selectedPaintingH){
             let myPainting = paintings.find(painting => painting.id == selectedPaintingH.id)
             canvasDiv.innerHTML =
-                        `<svg id="canvas-box" width="100%" height="100%" style="background-color: white;"> 
+                        `<svg id="canvas-box" width="100%" height="100%" style=${myPainting.background_color}> 
                             ${myPainting.svgInner}
                         </svg>`
             removeToolBars()

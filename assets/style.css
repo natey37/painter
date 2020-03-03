@@ -60,7 +60,7 @@ img {
     background-size: 20px 30px;
   } */ 
 
-  ul {
+  #nav-bar {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -68,9 +68,9 @@ img {
     background-color: aquamarine;
   }
 
-  #paintings-ul {
+  /* #paintings-ul {
     background-color: blueviolet;
-  }
+  } */
   
   li {
     float: left;
