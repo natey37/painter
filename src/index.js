@@ -1,9 +1,41 @@
+    // function loggedIn(){
+    //     document.body.innerHTML = `
+    //     <label for="uname"><b>Username</b></label>
+    //     <input type="text" placeholder="Enter Username" name="uname" required>
+    //     <button id="login" type="submit">Login</button>
+    //     `
+    //     loggedIn = true 
+    // }
+   
 
-
+    
 
 document.addEventListener("DOMContentLoaded", function(){
+    on()
     
-        
+    function on() {
+        document.getElementById("overlay").style.display = "block";
+      }
+      
+      function off() {
+        document.getElementById("overlay").style.display = "none";
+      }
+
+      const login = document.getElementById("login-submit")
+      login.addEventListener("click", () => {
+          off()
+      })
+    // let logIn = false 
+    // if(logIn === false){
+    //     loggedIn()
+    // } 
+
+    // const login = document.getElementById("login")
+    // login.addEventListener("click", () => {
+    //     document.body.innerHTML = `
+
+    //     `
+    // })
     const color123 = document.getElementById("color-123")
     console.log(color123)
     color123.addEventListener("input", function(event){
