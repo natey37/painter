@@ -652,18 +652,17 @@ document.addEventListener("DOMContentLoaded", function(){
                         `<svg id="canvas-box" width="100%" height="100%" style="background-color: white;"> 
                             ${myPainting.svgInner}
                         </svg>`
-            const item3 = document.getElementById("item3")
-            const item5 = document.getElementById("item5")
-            const item6 = document.getElementById("item6")
-            item3.style.visibility = "hidden"
-            item5.style.visibility = "hidden"
-            item6.style.visibility = "hidden"            
+            removeToolBars()
+               
        } 
 
        function removeToolBars(){
-        buttonGroup.remove()
-        propertiesPannel[0].remove()
-        colorInput.remove()
+        const item3 = document.getElementById("item3")
+        const item5 = document.getElementById("item5")
+        const item6 = document.getElementById("item6")
+        item3.style.visibility = "hidden"
+        item5.style.visibility = "hidden"
+        item6.style.visibility = "hidden"      
        }
 
 
