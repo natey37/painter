@@ -477,8 +477,9 @@ document.addEventListener("DOMContentLoaded", function(){
            selectedShape = ""
        }
        
-       const button = document.getElementsByTagName("BUTTON")[5]
-       button.addEventListener("click", function(e){
+       const removeButton = document.getElementById("remove")
+       removeButton.addEventListener("click", function(e){
+           console.log(e.target)
            removeShape()
            clearSelected()
            updateLayers()
@@ -544,15 +545,6 @@ document.addEventListener("DOMContentLoaded", function(){
            
        }
    
-       let colorInput = document.getElementById("color-form")
-       let colorR = document.getElementById("r")
-       let colorG = document.getElementById("g")
-       let colorB = document.getElementById("b")
-       let colorBox = document.getElementById("color-box")
-       let sliderR = document.getElementById("slider-r")
-       let sliderG = document.getElementById("slider-g")
-       let sliderB = document.getElementById("slider-b")
-       //let sliders = document.getElementsByClassName("sliders")
        
        const fillElement = document.getElementById("fill-element-svg")
 
@@ -561,22 +553,9 @@ document.addEventListener("DOMContentLoaded", function(){
                selectedShape.setAttribute("fill", fillElement.value)
                selectedShape.dataset["color"] = fillElement.value
            }
-        //    if (e.target.className === "sliders"){
-        //        colorR.value = sliderR.value
-        //        colorG.value = sliderG.value
-        //        colorB.value = sliderB.value
-        //    }
-   
-        //    let newrgb = `rgb(${colorR.value}, ${colorG.value}, ${colorB.value})`
-        //    if (selectedShape){
-        //    selectedShape.setAttribute("fill", newrgb)
-        //    selectedShape.dataset["color"] = newrgb
-        //    }
-        //    colorBox.style.backgroundColor = newrgb
-           
        })
 
-       
+    
        document.addEventListener("click", function(event){
            if(event.target.id === "save"){
                if(nameForm.children[2].value.length < 1){
