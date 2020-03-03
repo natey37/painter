@@ -3,7 +3,7 @@
     
 
 document.addEventListener("DOMContentLoaded", function(){
- let selectedUserId = null 
+ let selectedUser = null 
     on()
     
     function on() {
@@ -30,8 +30,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         }).then(response => response.json())
         .then(response => {
-            selectedUserId = response.id
-            console.log(selectedUserId)
+            selectedUser = response
             off()
         })
       })
@@ -59,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function(){
    const loginForm = document.getElementById("login")
    const canvasDiv = document.getElementById("item4")
    let paintings;
+   let users; 
 
    
    
@@ -593,7 +593,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     body: JSON.stringify({
                         name: nameForm.children[2].value,
                         svgInner: svg.innerHTML,   
-                        user_id: selectedUserId
+                        user_id: selectedUser.id
                     })
                 }).then(response => response.json())
                 .then(painting => {
@@ -609,7 +609,7 @@ document.addEventListener("DOMContentLoaded", function(){
            } else if(event.target.id === "new-painting"){
             location.reload()
            } else if(event.target.id === "my-paintings"){
-                fetch(`http://localhost:3000/users/${selectedUserId}`)
+                fetch(`http://localhost:3000/users/${selectedUser.id}`)
                 .then(response => response.json())
                 .then(response => {
                     let myPaintingsInnerHTML = response.map(painting => {
@@ -630,8 +630,9 @@ document.addEventListener("DOMContentLoaded", function(){
        //render paintings in the UL function 
        function paintingRender(response){
            let innerHTMLArr = response.map(painting => {
+               let foundUser = users.find(user => user.id === painting.user_id)
                return `
-               <h6 id =${painting.id} class="svg-collection"> ${painting.name} </h6>
+               <h6 id =${painting.id} class="svg-collection"> ${painting.name} - ${foundUser.name} </h6>
                <svg id =${painting.id} > ${painting.svgInner} </svg>
                `
            })
@@ -640,13 +641,20 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
        // fetches 
+       fetch("http://localhost:3000/users")
+       .then(response => response.json())
+       .then(response => {
+       console.log(response)
+       users = response
+       })
        fetch("http://localhost:3000/paintings")
-           .then(response => response.json())
-           .then(response => {
-            console.log(response)
-            paintings = response
-            paintingRender(response)
-           })
+        .then(response => response.json())
+        .then(response => {
+        console.log(response)
+        paintings = response
+        paintingRender(response)
+        })
+      
 
        
        // functions 
