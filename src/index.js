@@ -4,10 +4,10 @@
 
 document.addEventListener("DOMContentLoaded", function(){
 
-var x = document.getElementById("myAudio"); 
+// var x = document.getElementById("myAudio"); 
 
-var audio = new Audio('./sounds/zapsplat_emergency_call_handler_usa_operator_says_911_whats_your_emergency_please_002_15418.mp3');
-audio.play();
+// var audio = new Audio('./sounds/zapsplat_emergency_call_handler_usa_operator_says_911_whats_your_emergency_please_002_15418.mp3');
+// audio.play();
 
  let selectedUser = null 
     on()
@@ -853,7 +853,6 @@ audio.play();
                 .then(response => response.json())
                 .then(response => {
                     let myPaintingsInnerHTML = response.map(painting => {
-                        debugger; 
                         return `
                         <div class="grid-item" id="item4" data-id = ${painting.id}>
                             <h1 style="margin: 0; text-align: center;" id="name-on-my-paintings"> ${painting.name} - ${painting.created_at.split("T")[0]} </h1> 
@@ -899,10 +898,9 @@ audio.play();
        //render paintings in the UL function 
        function paintingRender(response){
            let innerHTMLArr = response.map(painting => {
-               let foundUser = users.find(user => user.id === painting.user_id)
                return `
                <div id = "${painting.id}" class = "all-users-paintings">
-               <h6 id =${painting.id} class="svg-collection"> ${painting.name} - ${foundUser.name} </h6>
+               <h6 id =${painting.id} class="svg-collection"> ${painting.name} - ${painting.user.name}  </h6>
                <svg id =${painting.id} style = "background-color:${painting.background_color}"> ${painting.svgInner} </svg>
                <p> Likes: ${painting.favorites.length} </p>
                </div>
