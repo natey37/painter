@@ -64,6 +64,9 @@ document.addEventListener("DOMContentLoaded", function(){
    let randomColor2 = colors[Math.floor(Math.random() * colors.length)]
    let randomColor3 = colors[Math.floor(Math.random() * colors.length)]
    let randomColor4 = colors[Math.floor(Math.random() * colors.length)]
+   const item3 = document.getElementById("item3")
+   const item5 = document.getElementById("item5")
+   const item6 = document.getElementById("item6")
 
 
    
@@ -636,7 +639,12 @@ document.addEventListener("DOMContentLoaded", function(){
             const selectedPaintingH = document.getElementById(event.target.id)
             renderPaintingRO(selectedPaintingH)
            } else if(event.target.id === "new-painting"){
+            // item3.style.visibility = "visible"
+            // item5.style.visibility = "visible"
+            // item6.style.visibility = "visible" 
+            // svg.innerHTML = ""
             location.reload()
+
            } else if(event.target.id === "my-paintings"){
                 fetch(`http://localhost:3000/users/${selectedUser.id}`)
                 .then(response => response.json())
@@ -644,6 +652,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     let myPaintingsInnerHTML = response.map(painting => {
                         return `
                         <div class="grid-item" id="item4">
+                            <h1 id="name-on-my-paintings"> ${painting.name} - ${painting.created_at.split("T")[0]} </h1> 
                             <svg id="canvas-box" width="100%" height="100%" style= "background-color: ${painting.background_color}; border: solid;"> 
                                 ${painting.svgInner}
                             </svg>
@@ -698,12 +707,9 @@ document.addEventListener("DOMContentLoaded", function(){
        } 
 
        function removeToolBars(){
-        const item3 = document.getElementById("item3")
-        const item5 = document.getElementById("item5")
-        const item6 = document.getElementById("item6")
         item3.style.visibility = "hidden"
         item5.style.visibility = "hidden"
         item6.style.visibility = "hidden"      
        }
-   
-   })
+
+   }) //end of DOM content loaded
