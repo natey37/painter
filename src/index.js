@@ -846,6 +846,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 fetch(`http://localhost:3000/users/${selectedUser.id}`)
                 .then(response => response.json())
                 .then(response => {
+                    console.log(response)
                     let myPaintingsInnerHTML = response.map(painting => {
                         return `
                         <div class="grid-item" id="item4" data-id = ${painting.id}>
@@ -860,7 +861,35 @@ document.addEventListener("DOMContentLoaded", function(){
                     canvasDiv.innerHTML = myPaintingsInnerHTML.join("")
                     removeToolBars()
                 })
-           } else if(event.target.className === "delete-button"){
+           } else if(event.target.id === "my-favorites"){
+            fetch(`http://localhost:3000/paintings`)
+            .then(response => response.json())
+            .then(response => {
+                // let userFavoritePaintingIds = selectedUser.favorites.map(fav => {fav.painting_id})
+                console.log(response)
+                console.log(response[0].favorites)
+               console.log(response.map(painting => painting.favorites))
+                let favs = response.map(painting => painting.favorites).flat()
+                console.log(favs)
+                let favsIds = favs.map(fav => fav.painting_id)
+                console.log(favsIds)
+                let myFavs = response.filter(painting => favsIds.includes(painting.id))
+                console.log(myFavs)
+                let myPaintingsInnerHTML = myFavs.map(painting => {
+                    return `
+                    <div class="grid-item" id="item4" data-id = ${painting.id}>
+                        <h1 style="margin: 0; text-align: center;" id="name-on-my-paintings"> ${painting.name} - ${painting.created_at.split("T")[0]} </h1> 
+                        <svg id="canvas-box" width="100%" height="100%" style= "background-color: ${painting.background_color}; border: solid;"> 
+                            ${painting.svgInner}
+                        </svg>
+                    </div> 
+                        `
+                })
+                canvasDiv.innerHTML = myPaintingsInnerHTML.join("")
+                removeToolBars()
+            })
+
+           }else if(event.target.className === "delete-button"){
                const allUserPaintings = Array.from(document.getElementsByClassName("all-users-paintings"))
                let foundPainting = allUserPaintings.find(painting => painting.id === event.target.id )
                console.log(foundPainting) 
@@ -938,6 +967,9 @@ document.addEventListener("DOMContentLoaded", function(){
             removeToolBars()
                
        } 
+
+       //render favorite paintings
+
 
        function removeToolBars(){
         item3.style.visibility = "hidden"
