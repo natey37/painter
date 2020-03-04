@@ -847,7 +847,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     let myPaintingsInnerHTML = response.map(painting => {
                         return `
                         <div class="grid-item" id="item4" data-id = ${painting.id}>
-                            <h1 id="name-on-my-paintings"> ${painting.name} - ${painting.created_at.split("T")[0]} </h1> 
+                            <h1 style="margin: 0; text-align: center;" id="name-on-my-paintings"> ${painting.name} - ${painting.created_at.split("T")[0]} </h1> 
                             <svg id="canvas-box" width="100%" height="100%" style= "background-color: ${painting.background_color}; border: solid;"> 
                                 ${painting.svgInner}
                             </svg>
