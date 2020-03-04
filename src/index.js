@@ -866,7 +866,7 @@ audio.play();
                             `
                     })
                     canvasDiv.innerHTML = myPaintingsInnerHTML.join("")
-                    removeToolBars()
+                    removeToolBars() 
                 })
            } else if(event.target.id === "my-favorites"){
             fetch(`http://localhost:3000/paintings`)
