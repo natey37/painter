@@ -243,3 +243,9 @@ img {
   color: white;
 }
 
+.btn-info {
+  border-radius: 8px;
+  color: white;
+  border: 2px solid  rgb(161, 75, 241)
+  
+}
