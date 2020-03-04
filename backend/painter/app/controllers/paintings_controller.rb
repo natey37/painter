@@ -2,7 +2,7 @@ class PaintingsController < ApplicationController
   
   def index
     paintings = Painting.all 
-    render json: paintings
+    render json: paintings.to_json(include: [:favorites])
   end
 
   def create 

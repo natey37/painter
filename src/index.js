@@ -868,6 +868,24 @@ document.addEventListener("DOMContentLoaded", function(){
                fetch(`http://localhost:3000/paintings/${event.target.id}`, {
                    method: "DELETE"
                }).then(event.target.parentElement.remove(), foundPainting.remove())
+           } else if(event.target.className === "favorite-button"){
+                const allUserPaintings = Array.from(document.getElementsByClassName("all-users-paintings"))
+                let foundPainting = allUserPaintings.find(painting => painting.id === event.target.id )
+                let likesNum = parseInt(foundPainting.children[2].innerText.split(":")[1])
+                likesNum++
+               fetch("http://localhost:3000/favorites", {
+                   method: "POST",
+                   headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                  },
+                  body: JSON.stringify({
+                      user_id: selectedUser.id,
+                      painting_id: event.target.id
+                  })
+               }).then(response => response.json())
+               .then(response => {
+                foundPainting.children[2].innerText = `Likes: ${likesNum}`
+               })
            }
        })
 
@@ -879,6 +897,7 @@ document.addEventListener("DOMContentLoaded", function(){
                <div id = "${painting.id}" class = "all-users-paintings">
                <h6 id =${painting.id} class="svg-collection"> ${painting.name} - ${foundUser.name} </h6>
                <svg id =${painting.id} style = "background-color:${painting.background_color}"> ${painting.svgInner} </svg>
+               <p> Likes: ${painting.favorites.length} </p>
                </div>
                `
            })
@@ -912,7 +931,10 @@ document.addEventListener("DOMContentLoaded", function(){
                         <h1 style = "color: white"> ${myPainting.children[0].innerText} </h1>
                         <svg id="canvas-box" width="100%" height="100%" style= "background-color: ${myPainting.children[1].style.backgroundColor}"> 
                             ${myPainting.children[1].innerHTML}
-                        </svg>`
+                        </svg>
+                        <button id= "${myPainting.id}" class= "favorite-button"> Favorite </button>
+                        `
+
             removeToolBars()
                
        } 
