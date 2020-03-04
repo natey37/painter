@@ -41,6 +41,15 @@ document.addEventListener("DOMContentLoaded", function(){
         svg.style.backgroundColor = backgroundColor.value
         console.log(svg.style.backgroundColor)
     })
+
+    const fillElement = document.getElementById("fill-element-svg")
+
+       fillElement.addEventListener("input", function(e){
+           if(selectShape){
+               selectedShape.setAttribute("fill", fillElement.value)
+               selectedShape.dataset["color"] = fillElement.value
+           }
+       })
     
    const paintingUL = document.getElementById("paintings-ul") 
    const svg = document.getElementById("canvas-box")
@@ -126,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function(){
                selected = "Square"
                break;
            case "Custom Circle":
-               selected = "Triangle"
+               selected = "Custom Circle"
                break;
            case "Custom Square":
                selected = "Custom Square"
@@ -135,10 +144,20 @@ document.addEventListener("DOMContentLoaded", function(){
                selected = "Custom Path"
                console.log(selected)
                break;
+            case "Ellipse":
+                selected = "Ellipse"
+                break;
+            case "Custom Triangle":
+                selected = "Custom Triangle"
+                break;
             case "Custom Ellipse":
                 selected = "Custom Ellipse"
                 break;
+            case "Line":
+                selected = "Line"
+                break;
            default:
+
            // code block
        }
    
@@ -155,12 +174,12 @@ document.addEventListener("DOMContentLoaded", function(){
        let x = event.clientX - rect.left - currentSize;
        let y = event.clientY - rect.top - currentSize;
    
-       if(selected === "Triangle" || selected === "Custom Square"){
-       firstClick = {
-           x: x,
-           y: y
-       }
-   }
+       if(selected === "Custom Circle" || selected === "Custom Square" || "Custom Ellipse"){
+            firstClick = {
+                x: x,
+                y: y
+            }
+        }
        console.log(selected)
        if(selected === "Custom Path"){
            let x = event.clientX - rect.left
@@ -169,25 +188,44 @@ document.addEventListener("DOMContentLoaded", function(){
            pathBuilder.push([x,y])
            console.log(pathBuilder)
    
-           if (pathBuilder.length > 1){
-   
-               buildPath(pathBuilder)
-           }
-           //build path on the second click. 
-   
-   
-   
-   
+
+            buildPath(pathBuilder)
+            
+            if(pathBuilder.length > 6){
+                pathBuilder.length = 0 
+            }  
        }
+
+       if (selected === "Custom Triangle"){
+            let x = event.clientX - rect.left
+            let y = event.clientY - rect.top
+            pathBuilder.push([x,y])
+            customTriangle(pathBuilder)
+            
+            if(pathBuilder.length > 2){
+                pathBuilder.length = 0 
+            }
+
+        }
+
+        if (selected === "Line"){
+            let x = event.clientX - rect.left
+            let y = event.clientY - rect.top
+            pathBuilder.push([x,y])
+            createLine(pathBuilder)
+            
+            if(pathBuilder.length > 1){
+                pathBuilder.length = 0 
+            }
+        }
    })
-   
    
    svg.addEventListener("drag", function (e) {
        console.log(e)
    })
    svg.addEventListener("mouseup", function (e) {
        
-       if (selected === "Triangle" || selected === "Custom Square") {
+       if (selected === "Custom Circle" || selected === "Custom Square" || selected === "Custom Ellipse") {
        let rect = svg.getBoundingClientRect();
        let x = event.clientX - rect.left - currentSize;
        let y = event.clientY - rect.top - currentSize;
@@ -201,10 +239,13 @@ document.addEventListener("DOMContentLoaded", function(){
    
        let c = Math.sqrt(a * a + b * b);
    
-           if (selected === "Triangle" ) {
+           if (selected === "Custom Circle" ) {
                createCustomCircle(e, c)
            } else if (selected === "Custom Square") {
+               console.log(c)
                createCustomSquare(e, c)
+           } else if (selected === "Custom Ellipse"){
+               createCustomEllipse(e, c)
            }
    }
    })
@@ -224,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function(){
                createSquare(e)
                updateLayers()
                break;
-           case "Triangle":
+           case "Custom Circle":
                //seperate events
                updateLayers()
                break;
@@ -232,10 +273,16 @@ document.addEventListener("DOMContentLoaded", function(){
                //seperate events
                updateLayers()
                break;
+            case "Ellipse":
+                createEllipse(e)
+                break;
             case "Custom Ellipse":
                 
-                break;
+            case "Custom Triangle":
+                
+            
            case "Custom Path":
+
                //seperate events
                
                break;
@@ -283,8 +330,8 @@ document.addEventListener("DOMContentLoaded", function(){
        cir1.setAttribute("cx", currentSize);
        cir1.setAttribute("cy", currentSize);
        cir1.setAttribute("r", currentSize);
-       cir1.setAttribute("fill", randomColor1);
-       cir1.dataset["color"] = randomColor1
+       cir1.setAttribute("fill", fillElement.value);
+       cir1.dataset["color"] = fillElement.value
    
        // attach it to the container
        svg1.appendChild(cir1);
@@ -316,8 +363,8 @@ document.addEventListener("DOMContentLoaded", function(){
            cir1.setAttribute("y", currentSize);
            cir1.setAttribute("width", currentSize);
            cir1.setAttribute("height", currentSize);
-           cir1.setAttribute("fill", randomColor3);
-           cir1.dataset["color"] = randomColor3
+           cir1.setAttribute("fill", fillElement.value);
+           cir1.dataset["color"] = fillElement.value
    
            // attach it to the container
            svg1.appendChild(cir1);
@@ -328,7 +375,7 @@ document.addEventListener("DOMContentLoaded", function(){
    
    
        function createCustomSquare(e, c) {
-   
+            console.log(c)
            console.log("worked")
            //get mouse position
            let rect = svg.getBoundingClientRect();
@@ -349,8 +396,8 @@ document.addEventListener("DOMContentLoaded", function(){
            cir1.setAttribute("y", c);
            cir1.setAttribute("width", c);
            cir1.setAttribute("height", c);
-           cir1.setAttribute("fill", randomColor4);
-           cir1.dataset["color"] = randomColor4
+           cir1.setAttribute("fill", fillElement.value);
+           cir1.dataset["color"] = fillElement.value
    
            // attach it to the container
            svg1.appendChild(cir1);
@@ -363,11 +410,15 @@ document.addEventListener("DOMContentLoaded", function(){
        }
        
        //create ellipse 
-       function createCustomEllipse(e, c) {
+       function createEllipse(e) {
+
+           console.log(e)
            //get mouse position
            let rect = svg.getBoundingClientRect();
-           let x = event.clientX - rect.left - c;
-           let y = event.clientY - rect.top - c;
+           let x = event.clientX - rect.left - currentSize;
+           let y = event.clientY - rect.top - currentSize;
+           console.log(x)
+           console.log(y)
 
             // create the svg element
             const svg1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -378,22 +429,81 @@ document.addEventListener("DOMContentLoaded", function(){
 
              // create an ellipse
              const ellipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-             ellipse.setAttribute("cx", c);
-             ellipse.setAttribute("cy", c);
-             ellipse.setAttribute("rx", c);
-             ellipse.setAttribute("ry", c)
-             ellipse.setAttribute("fill", "red");
-             ellipse.dataset["color"] = "rgb(255, 0, 0)"
+             ellipse.setAttribute("cx", currentSize);
+             ellipse.setAttribute("cy", currentSize / 2);
+
+             ellipse.setAttribute("rx", currentSize);
+             ellipse.setAttribute("ry", currentSize / 2)
+             ellipse.setAttribute("fill", fillElement.value);
+             ellipse.dataset["color"] = fillElement.value 
 
 
            // attach it to the container
-           svg1.appendChild(cir1);
+           svg1.appendChild(ellipse);
    
            // attach container to document
            svg.appendChild(svg1);
        
        }
    
+       
+
+
+
+
+
+
+
+
+
+
+    //    //Custom Ellipse
+
+       function createCustomEllipse(e, c) {
+
+        console.log(e)
+        //get mouse position
+        let rect = svg.getBoundingClientRect();
+        let x = event.clientX - rect.left - c;
+        let y = event.clientY - rect.top - c;
+        console.log(x)
+        console.log(y)
+
+         // create the svg element
+         const svg1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+         // set width and height
+        svg1.setAttribute("x", x);
+        svg1.setAttribute("y", y);
+
+          // create an ellipse
+          const ellipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+          ellipse.setAttribute("cx", c);
+          ellipse.setAttribute("cy", c / 2);
+
+          ellipse.setAttribute("rx", c);
+          ellipse.setAttribute("ry", c / 2)
+          ellipse.setAttribute("fill", fillElement.value);
+          ellipse.dataset["color"] = fillElement.value 
+
+
+        // attach it to the container
+        svg1.appendChild(ellipse);
+
+        // attach container to document
+        svg.appendChild(svg1);
+    
+    }
+
+
+
+
+
+
+
+
+
+
        function createCustomCircle(e, c) {
            
    
@@ -415,8 +525,8 @@ document.addEventListener("DOMContentLoaded", function(){
            cir1.setAttribute("cx", c);
            cir1.setAttribute("cy", c);
            cir1.setAttribute("r", c);
-           cir1.setAttribute("fill", randomColor2);
-           cir1.dataset["color"] = randomColor2
+           cir1.setAttribute("fill", fillElement.value);
+           cir1.dataset["color"] = fillElement.value
            
    
    
@@ -550,7 +660,6 @@ document.addEventListener("DOMContentLoaded", function(){
    
    
        function buildPath(array){
-           
            //initial M
            let M = `M ${array[0][0]} ${array[0][1]}`
    
@@ -580,7 +689,7 @@ document.addEventListener("DOMContentLoaded", function(){
            // create a circle
            const path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
            path1.setAttribute("d", finalString);
-           path1.setAttribute("fill", "red");
+           path1.setAttribute("fill", fillElement.value);
            path1.setAttribute("stroke", "black");
            path1.dataset["color"] = "rgb(255, 0, 0)"
    
@@ -590,17 +699,102 @@ document.addEventListener("DOMContentLoaded", function(){
            // attach container to document
            svg.appendChild(svg1);
            
+           //clear array for next path
+           
        }
-   
-       
-       const fillElement = document.getElementById("fill-element-svg")
 
-       fillElement.addEventListener("input", function(e){
-           if(selectShape){
-               selectedShape.setAttribute("fill", fillElement.value)
-               selectedShape.dataset["color"] = fillElement.value
-           }
-       })
+       //Custrom triangle 
+
+       function customTriangle(array){
+        //initial M
+        let M = `M ${array[0][0]} ${array[0][1]}`
+
+        //final Z
+        let Z = `Z`
+        let newArray = array.map(x=>x)
+        newArray.shift()
+        let finalString = `${M}`
+        console.log(newArray)
+        newArray.forEach(n => {
+            finalString = finalString + ` L ${n[0]} ${n[1]} `
+            
+        })
+        //append Z to end
+        finalString = finalString + `Z`
+
+        //render shape here
+        console.log(finalString)
+
+        // create the svg element
+        const svg1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+        // set width and height
+        svg1.setAttribute("x", 0);
+        svg1.setAttribute("y", 0);
+
+        // create a circle
+        const path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path1.setAttribute("d", finalString);
+        path1.setAttribute("fill", fillElement.value);
+        path1.setAttribute("stroke", "black");
+        path1.dataset["color"] = "rgb(255, 0, 0)"
+
+        // attach it to the container
+        svg1.appendChild(path1);
+
+        // attach container to document
+        svg.appendChild(svg1);
+        
+        //clear array for next path
+        
+    }
+   
+      //create line 
+      function createLine(array){
+        //initial M
+        let M = `M ${array[0][0]} ${array[0][1]}`
+
+        //final Z
+        let Z = `Z`
+        let newArray = array.map(x=>x)
+        newArray.shift()
+        let finalString = `${M}`
+        console.log(newArray)
+        newArray.forEach(n => {
+            finalString = finalString + ` L ${n[0]} ${n[1]} `
+            
+        })
+        //append Z to end
+        finalString = finalString + `Z`
+
+        //render shape here
+        console.log(finalString)
+
+        // create the svg element
+        const svg1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+        // set width and height
+        svg1.setAttribute("x", 0);
+        svg1.setAttribute("y", 0);
+
+        // create a circle
+        const path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path1.setAttribute("d", finalString);
+        path1.setAttribute("fill", fillElement.value);
+        path1.setAttribute("stroke", "black");
+        path1.setAttribute("stroke-width", currentSize / 4)
+        path1.dataset["color"] = "rgb(255, 0, 0)"
+
+        // attach it to the container
+        svg1.appendChild(path1);
+
+        // attach container to document
+        svg.appendChild(svg1);
+        
+        //clear array for next path
+        
+    }
+       
 
     
        document.addEventListener("click", function(event){
