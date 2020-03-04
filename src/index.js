@@ -652,17 +652,23 @@ document.addEventListener("DOMContentLoaded", function(){
                 .then(response => {
                     let myPaintingsInnerHTML = response.map(painting => {
                         return `
-                        <div class="grid-item" id="item4">
+                        <div class="grid-item" id="item4" data-id = ${painting.id}>
                             <h1 id="name-on-my-paintings"> ${painting.name} - ${painting.created_at.split("T")[0]} </h1> 
                             <svg id="canvas-box" width="100%" height="100%" style= "background-color: ${painting.background_color}; border: solid;"> 
                                 ${painting.svgInner}
                             </svg>
+                            <button class="delete-button" id="${painting.id}"> Delete </button>
                         </div> 
                             `
                     })
                     canvasDiv.innerHTML = myPaintingsInnerHTML.join("")
                     removeToolBars()
                 })
+           } else if(event.target.className === "delete-button"){
+               console.log("delete")
+               fetch(`http://localhost:3000/paintings/${event.target.id}`, {
+                   method: "DELETE"
+               }).then(event.target.parentElement.remove())
            }
        })
 
