@@ -784,7 +784,7 @@ document.addEventListener("DOMContentLoaded", function(){
         const path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
         path1.setAttribute("d", finalString);
         path1.setAttribute("fill", fillElement.value);
-        path1.setAttribute("stroke", "black");
+        path1.setAttribute("stroke", fillElement.value);
         path1.setAttribute("stroke-width", currentSize / 4)
         path1.dataset["color"] = "rgb(255, 0, 0)"
 
