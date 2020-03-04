@@ -629,8 +629,9 @@ document.addEventListener("DOMContentLoaded", function(){
                     body: JSON.stringify(paintingObj)
                 }).then(response => response.json())
                 .then(painting => {
+                    foundUser = selectedUser
                     paintingUL.innerHTML += `
-                    <h6> ${painting.name}  </h6>
+                    <h6 id =${painting.id}> ${painting.name} - ${selectedUser.name} </h6>
                     <svg style=${painting.background_color} id =${painting.id}> ${painting.svgInner} </svg>
                     `
                 })
