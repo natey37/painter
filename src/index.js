@@ -825,8 +825,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 .then(painting => {
                     foundUser = selectedUser
                     paintingUL.innerHTML += `
-                    <h6 id =${painting.id}> ${painting.name} - ${selectedUser.name} </h6>
-                    <svg style=${painting.background_color} id =${painting.id}> ${painting.svgInner} </svg>
+                    <div id = "${painting.id}" class = "all-users-paintings">
+                    <h6 id =${painting.id} class="svg-collection"> ${painting.name} - ${foundUser.name} </h6>
+                    <svg id =${painting.id} style = "background-color:${painting.background_color}"> ${painting.svgInner} </svg>
+                    </div>
                     `
                 })
               }
@@ -903,10 +905,13 @@ document.addEventListener("DOMContentLoaded", function(){
        
        // functions 
        function renderPaintingRO(selectedPaintingH){
-            let myPainting = paintings.find(painting => painting.id == selectedPaintingH.id)
+            let allUserPaintings = Array.from(document.getElementsByClassName("all-users-paintings"))
+            let myPainting = allUserPaintings.find(painting => painting.id == selectedPaintingH.id)
             canvasDiv.innerHTML =
-                        `<svg id="canvas-box" width="100%" height="100%" style= "background-color: ${myPainting.background_color}"> 
-                            ${myPainting.svgInner}
+                        `
+                        <h1 style = "color: white"> ${myPainting.children[0].innerText} </h1>
+                        <svg id="canvas-box" width="100%" height="100%" style= "background-color: ${myPainting.children[1].style.backgroundColor}"> 
+                            ${myPainting.children[1].innerHTML}
                         </svg>`
             removeToolBars()
                
