@@ -665,10 +665,13 @@ document.addEventListener("DOMContentLoaded", function(){
                     removeToolBars()
                 })
            } else if(event.target.className === "delete-button"){
+               const allUserPaintings = Array.from(document.getElementsByClassName("all-users-paintings"))
+               let foundPainting = allUserPaintings.find(painting => painting.id === event.target.id )
+               console.log(foundPainting) 
                console.log("delete")
                fetch(`http://localhost:3000/paintings/${event.target.id}`, {
                    method: "DELETE"
-               }).then(event.target.parentElement.remove())
+               }).then(event.target.parentElement.remove(), foundPainting.remove())
            }
        })
 
@@ -677,8 +680,10 @@ document.addEventListener("DOMContentLoaded", function(){
            let innerHTMLArr = response.map(painting => {
                let foundUser = users.find(user => user.id === painting.user_id)
                return `
+               <div id = "${painting.id}" class = "all-users-paintings">
                <h6 id =${painting.id} class="svg-collection"> ${painting.name} - ${foundUser.name} </h6>
                <svg id =${painting.id} style = "background-color:${painting.background_color}"> ${painting.svgInner} </svg>
+               </div>
                `
            })
             paintingUL.innerHTML = innerHTMLArr.join("")
