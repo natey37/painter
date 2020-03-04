@@ -114,7 +114,7 @@ img {
 
   .grid-container {
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto ;
-    grid-template-rows: 60px 60px auto auto auto auto auto auto auto auto;
+    grid-template-rows: 70px 60px auto auto auto auto auto auto auto auto;
 
     display: grid;
     /* grid-template-columns: auto auto auto auto; */
@@ -130,7 +130,7 @@ img {
     /* background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.8); */
     /* padding: 20px; */
-    font-size: 12px;
+    /* font-size: 12px; */
     /* text-align: center;  */
   }
 
@@ -228,4 +228,13 @@ img {
   background-color: rgb(72, 20, 243);
   border: 1px solid #ddd;
   color: white;
+}
+
+@font-face {
+  font-family: Octobertwilight;
+  src: url(Octobertwilight-lzwZ.otf);
+}
+
+#title12 {
+  font-family: Octobertwilight;
 }

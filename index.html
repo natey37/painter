@@ -1,17 +1,23 @@
 <script src="src/index.js"></script>
+<script src="https://kit.fontawesome.com/4b8f2c4a46.js" crossorigin="anonymous"></script>
 
+<!doctype html>
 <html>
-<title>KID PIX</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="assets/style.css"
+<head>
+    <title>KID PIX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="assets/style.css"
+
+</head>
 <body>
 
 <div class="grid-container">
     <div id="overlay">
         <form id="login">
             <input id="login-input" type="text" placeholder="Enter Username" name="uname" required>
-            <button id="login-submit" style="text-align: center" input="submit">Login</button>
+            <button id="login-submit" style="text-align: center" input="submit">            <i class="fas fa-hat-wizard fa-2x" style="color:rgb(110, 226, 43)"></i>
+            </button>
         </form>
     </div>
 
@@ -28,7 +34,8 @@
 
     <div class="grid-item" id="item2">
         <ul id="nav-bar">
-            <li style="padding-left: 10px;"><h3>Painting with Picasso</h3></li>
+            <li style="padding-left: 10px;"><h3 id="title12">Painting with Picasso</h3></li>
+            <li><i style="color: rgb(161, 75, 241)" class="fas fa-palette fa-4x"></i></li>
             <li style="float:right"><a class="active" href="#aboutus">About Us</a></li>
             <li style="float:right" ><a class="active" id= "my-paintings" href="#mypaintings">My Paintings</a></li>
             <li style="float:right" ><a id ="new-painting" class="active" href="#newpaintings">New Painting</a></li>
@@ -42,6 +49,7 @@
             <button style="background-color: rgb(43, 189, 226)" class="btn-info">Circle</button>
             <button style="background-color: rgb(236, 226, 82)" class="btn-info">Square</button>
             <button style="background-color: rgb(84, 96, 211)" class="btn-info">Custom Circle</button>
+            <button style="background-color: rgb(84, 211, 194)" class="btn-info">Custom Ellipse</button>
             <button style="background-color: rgb(226, 43, 180)" class="btn-info">Custom Square</button>
             <button style="background-color: rgb(110, 226, 43)"class="btn-info">Custom Path</button>
             <div class="toolbox">
@@ -65,7 +73,7 @@
 
     <div class="grid-item" id="item7">
         <div style="background-color: cornflowerblue;">
-            <img src="assets/p4.png" style="width: 20px; height: 20px;">Andrew Richards, Big Table LLC
+            <img src="assets/p4.png" style="width: 20px; height: 20px;"> Andrew Richards, Miles Higbie, Nathan Brickett - Big Table LLC
         </div>
     </div>
 
@@ -81,16 +89,16 @@
                 <label for="name">Painting Name</label><br>
                 <input type="text" id="name" name="name" ><br>
             </form> 
-            <button id="save" >Save</button>
+            <button id="save" ><i class="far fa-save fa-3x"></i></button>
         </div>
         
     </div>
 
 
     <div class="grid-item" id="item6">
-        Background Color: <input id="background-svg" name="Color Picker" type="color"/><br><br>
-        Shape Color: <input id="fill-element-svg" name="Color Picker" type="color"/><br><br>
-        <button id="remove" class="btn-danger">Remove</button>
+        Background Color: <input style="font-size: 15px;"  id="background-svg" name="Color Picker" type="color"/><br><br>
+        <i   class="fas fa-shapes fa-3x"></i>  <input id="fill-element-svg" name="Color Picker" type="color"/><br><br>
+        <button id="remove" class="btn-danger"><i class="fas fa-eraser fa-3x"></i></button>
 
       <!-- <div class="color-picker">
         <form id="color-form">

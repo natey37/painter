@@ -59,6 +59,12 @@ document.addEventListener("DOMContentLoaded", function(){
    const canvasDiv = document.getElementById("item4")
    let paintings;
    let users; 
+   let colors = ["red", "yellow", "orange", "pink", "turquoise", "cerulean", "purple", "aqua", "aquamarine", "colbalt", "blueviolet", "coral", "chartreuse", "crimson", "darkgreen", "darkmagenta", "darkslateblue", "deeppink", "forestgreen"]
+   let randomColor1 = colors[Math.floor(Math.random() * colors.length)]
+   let randomColor2 = colors[Math.floor(Math.random() * colors.length)]
+   let randomColor3 = colors[Math.floor(Math.random() * colors.length)]
+   let randomColor4 = colors[Math.floor(Math.random() * colors.length)]
+
 
    
    
@@ -129,6 +135,9 @@ document.addEventListener("DOMContentLoaded", function(){
                selected = "Custom Path"
                console.log(selected)
                break;
+            case "Custom Ellipse":
+                selected = "Custom Ellipse"
+                break;
            default:
            // code block
        }
@@ -223,6 +232,9 @@ document.addEventListener("DOMContentLoaded", function(){
                //seperate events
                updateLayers()
                break;
+            case "Custom Ellipse":
+                
+                break;
            case "Custom Path":
                //seperate events
                
@@ -271,8 +283,8 @@ document.addEventListener("DOMContentLoaded", function(){
        cir1.setAttribute("cx", currentSize);
        cir1.setAttribute("cy", currentSize);
        cir1.setAttribute("r", currentSize);
-       cir1.setAttribute("fill", "red");
-       cir1.dataset["color"] = "rgb(255, 0, 0)"
+       cir1.setAttribute("fill", randomColor1);
+       cir1.dataset["color"] = randomColor1
    
        // attach it to the container
        svg1.appendChild(cir1);
@@ -304,8 +316,8 @@ document.addEventListener("DOMContentLoaded", function(){
            cir1.setAttribute("y", currentSize);
            cir1.setAttribute("width", currentSize);
            cir1.setAttribute("height", currentSize);
-           cir1.setAttribute("fill", "red");
-           cir1.dataset["color"] = "rgb(255, 0, 0)"
+           cir1.setAttribute("fill", randomColor3);
+           cir1.dataset["color"] = randomColor3
    
            // attach it to the container
            svg1.appendChild(cir1);
@@ -337,18 +349,53 @@ document.addEventListener("DOMContentLoaded", function(){
            cir1.setAttribute("y", c);
            cir1.setAttribute("width", c);
            cir1.setAttribute("height", c);
-           cir1.setAttribute("fill", "red");
-           cir1.dataset["color"] = "rgb(255, 0, 0)"
+           cir1.setAttribute("fill", randomColor4);
+           cir1.dataset["color"] = randomColor4
    
            // attach it to the container
            svg1.appendChild(cir1);
    
            // attach container to document
            svg.appendChild(svg1);
+
+
+        
+       }
+       
+       //create ellipse 
+       function createCustomEllipse(e, c) {
+           //get mouse position
+           let rect = svg.getBoundingClientRect();
+           let x = event.clientX - rect.left - c;
+           let y = event.clientY - rect.top - c;
+
+            // create the svg element
+            const svg1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+            // set width and height
+           svg1.setAttribute("x", x);
+           svg1.setAttribute("y", y);
+
+             // create an ellipse
+             const ellipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+             ellipse.setAttribute("cx", c);
+             ellipse.setAttribute("cy", c);
+             ellipse.setAttribute("rx", c);
+             ellipse.setAttribute("ry", c)
+             ellipse.setAttribute("fill", "red");
+             ellipse.dataset["color"] = "rgb(255, 0, 0)"
+
+
+           // attach it to the container
+           svg1.appendChild(cir1);
+   
+           // attach container to document
+           svg.appendChild(svg1);
+       
        }
    
-   
        function createCustomCircle(e, c) {
+           
    
            //get mouse position
            let rect = svg.getBoundingClientRect();
@@ -368,8 +415,8 @@ document.addEventListener("DOMContentLoaded", function(){
            cir1.setAttribute("cx", c);
            cir1.setAttribute("cy", c);
            cir1.setAttribute("r", c);
-           cir1.setAttribute("fill", "red");
-           cir1.dataset["color"] = "rgb(255, 0, 0)"
+           cir1.setAttribute("fill", randomColor2);
+           cir1.dataset["color"] = randomColor2
            
    
    
