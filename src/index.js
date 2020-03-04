@@ -3,6 +3,12 @@
     
 
 document.addEventListener("DOMContentLoaded", function(){
+
+var x = document.getElementById("myAudio"); 
+
+var audio = new Audio('./sounds/zapsplat_emergency_call_handler_usa_operator_says_911_whats_your_emergency_please_002_15418.mp3');
+audio.play();
+
  let selectedUser = null 
     on()
     
@@ -847,6 +853,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 .then(response => response.json())
                 .then(response => {
                     let myPaintingsInnerHTML = response.map(painting => {
+                        debugger; 
                         return `
                         <div class="grid-item" id="item4" data-id = ${painting.id}>
                             <h1 style="margin: 0; text-align: center;" id="name-on-my-paintings"> ${painting.name} - ${painting.created_at.split("T")[0]} </h1> 
