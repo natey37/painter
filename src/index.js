@@ -4,10 +4,9 @@
 
 document.addEventListener("DOMContentLoaded", function(){
 
-// var x = document.getElementById("myAudio"); 
+var x = document.getElementById("myAudio"); 
+var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdown_alarm_42849.mp3');
 
-// var audio = new Audio('./sounds/zapsplat_emergency_call_handler_usa_operator_says_911_whats_your_emergency_please_002_15418.mp3');
-// audio.play();
 
  let selectedUser = null 
     on()
@@ -38,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function(){
         .then(response => {
             selectedUser = response
             off()
+            audio.play();
         })
       })
 
@@ -852,7 +852,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 fetch(`http://localhost:3000/users/${selectedUser.id}`)
                 .then(response => response.json())
                 .then(response => {
-                    console.log(response)
                     let myPaintingsInnerHTML = response.map(painting => {
                         return `
                         <div class="grid-item" id="item4" data-id = ${painting.id}>
@@ -977,7 +976,11 @@ document.addEventListener("DOMContentLoaded", function(){
             let myPainting = allUserPaintings.find(painting => painting.id == selectedPaintingH.id)
             canvasDiv.innerHTML =
                         `
+<<<<<<< HEAD
                         <h1 style = "color: white; margin: 0;"> ${myPainting.children[0].innerText} </h1>
+=======
+                        <h1 style = "color: white"> ${myPainting.children[0].innerText}  </h1>
+>>>>>>> 0e0e9eb97dfb42b280719acd91300a88c9205231
                         <svg id="canvas-box" width="100%" height="100%" style= "background-color: ${myPainting.children[1].style.backgroundColor}"> 
                             ${myPainting.children[1].innerHTML}
                         </svg>
@@ -987,9 +990,6 @@ document.addEventListener("DOMContentLoaded", function(){
             removeToolBars()
                
        } 
-
-       //render favorite paintings
-
 
        function removeToolBars(){
         item3.style.visibility = "hidden"
