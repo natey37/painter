@@ -311,11 +311,11 @@ img {
 		-ms-animation-name:bounce_fountainTextG;
 		-webkit-animation-name:bounce_fountainTextG;
 		-moz-animation-name:bounce_fountainTextG;
-	animation-duration:2.09s;
-		-o-animation-duration:2.09s;
-		-ms-animation-duration:2.09s;
-		-webkit-animation-duration:2.09s;
-		-moz-animation-duration:2.09s;
+	animation-duration:4.0s;
+		-o-animation-duration:4.0s;
+		-ms-animation-duration:4.0s;
+		-webkit-animation-duration:4.0s;
+		-moz-animation-duration:4.0s;
 	animation-iteration-count:infinite;
 		-o-animation-iteration-count:infinite;
 		-ms-animation-iteration-count:infinite;
@@ -454,11 +454,11 @@ img {
 }
 
 #fountainTextG_17{
-	animation-delay:3.14;
-		-o-animation-delay:3.14;
-		-ms-animation-delay:3.14;
-		-webkit-animation-delay:3.14;
-		-moz-animation-delay:3.14;
+	animation-delay:3.14s;
+		-o-animation-delay:3.14s;
+		-ms-animation-delay:3.14s;
+		-webkit-animation-delay:3.14s;
+		-moz-animation-delay:3.14s;
 }
 
 #fountainTextG_18{
