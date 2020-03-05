@@ -864,7 +864,7 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
                             `
                     })
                     canvasDiv.innerHTML = myPaintingsInnerHTML.join("")
-                    removeToolBars()
+                    removeToolBars() 
                 })
            } else if(event.target.className === "delete-button"){
                const allUserPaintings = Array.from(document.getElementsByClassName("all-users-paintings"))
