@@ -446,6 +446,7 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
             // set width and height
            svg1.setAttribute("x", x);
            svg1.setAttribute("y", y);
+           
 
              // create an ellipse
              const ellipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
@@ -711,6 +712,7 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
            path1.setAttribute("d", finalString);
            path1.setAttribute("fill", fillElement.value);
            path1.setAttribute("stroke", "black");
+           path1.setAttribute("stroke-width", "0.1px")
            path1.dataset["color"] = "rgb(255, 0, 0)"
    
            // attach it to the container
@@ -757,6 +759,7 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
         path1.setAttribute("d", finalString);
         path1.setAttribute("fill", fillElement.value);
         path1.setAttribute("stroke", "black");
+        path1.setAttribute("stroke-width", "0.1px")
         path1.dataset["color"] = "rgb(255, 0, 0)"
 
         // attach it to the container
@@ -1004,6 +1007,7 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
         item6.style.visibility = "hidden"      
        }
 
+       //remove last svg shape from canvas
        const removeLast = document.getElementById("remove-last")
        removeLast.addEventListener("click", () => {
            const canvasBox = document.getElementById("canvas-box")
@@ -1015,5 +1019,21 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
         console.log(canvasBoxChildrenReversed)
         canvasBoxChildrenReversed[0].remove()
        })
+
+       //rotate 
+       const rotate = document.getElementById("rotate")
+       rotate.addEventListener("click", () => {
+                const canvasBox = document.getElementById("canvas-box")
+                console.log(canvasBox)
+
+                let canvasBoxChildren = canvasBox.children 
+                console.log(canvasBoxChildren)
+            let canvasBoxChildrenReversed = [].slice.call(canvasBoxChildren, 0).reverse()
+            console.log(canvasBoxChildrenReversed[0].children[0])
+            let test = canvasBoxChildrenReversed[0].children[0].setAttribute("transform", "rotate(-45 100 100)")
+            console.log(test)
+
+       })
+
 
    }) //end of DOM content loaded

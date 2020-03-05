@@ -21,16 +21,7 @@
 
         
         <form id="login">
-            <!-- <h1 id="title13" style="color: rgb(72, 20, 243);">Painting With Picasso</h1> -->
-            <!-- <div id="fountainTextG">
-                <div id="fountainTextG_1" class="fountainTextG">L</div>
-                <div id="fountainTextG_2" class="fountainTextG">o</div>
-                <div id="fountainTextG_3" class="fountainTextG">a</div>
-                <div id="fountainTextG_4" class="fountainTextG">d</div>
-                <div id="fountainTextG_5" class="fountainTextG">i</div>
-                <div id="fountainTextG_6" class="fountainTextG">n</div>
-                <div id="fountainTextG_7" class="fountainTextG">g</div>
-            </div> -->
+
             <div style="float:left" id="fountainTextG">
                 <div id="fountainTextG_1" style="display:inline-block;" class="fountainTextG">P</div>
                 <div id="fountainTextG_2" style="display:inline-block;" class="fountainTextG">a</div>
@@ -56,13 +47,22 @@
                 <div id="fountainTextG_20" style="display:inline-block;" class="fountainTextG">o</div>
                 
                 <div style="display:inline-block;" ></div>
+                <div style="display:inline-block;" ></div>
+                <div style="display:inline-block;" ></div>
+
+
                 <div id="fountainTextG_21" style="display:inline-block;" class="fountainTextG">-</div>
                 <div id="fountainTextG_22" style="display:inline-block;" class="fountainTextG">-</div>
                 <div id="fountainTextG_23" style="display:inline-block;" class="fountainTextG">></div>
                 
                 
             </div>
+
             <div style="display:inline-block;" ></div>
+            <div style="display:inline-block;" ></div>
+            <div style="display:inline-block;" ></div>
+
+
             <input style="float: center;"id="login-input" type="text" placeholder="Enter Username" name="uname" required>
             <button id="login-submit" style="text-align: center" input="submit">            <i class="fas fa-hat-wizard fa-2x" style="color:rgb(110, 226, 43)"></i>
             </button>
@@ -140,10 +140,10 @@
             <p>Color: <span id="shape-color"></span></p> -->
             <!-- <button id="remove" class="btn-danger">Remove</button> -->
             <form id="painting-name-form">
-                <label for="name">Painting Name</label><br>
+                <h3 style="margin: none; color:  blueviolet"id="title15"><label for="name">Painting Name</label></h3>
                 <input type="text" id="name" name="name" ><br>
             </form>
-            <button class="btn-info" style="background-color: black; border-color: rgb(85, 85, 85);"><i id="save" class="far fa-save fa-3x" style="color:rgb(233, 132, 233);"></i></button>
+            <button class="btn-info" style="background-color: black; border-color: rgb(85, 85, 85);"><i id="save" class="far fa-save fa-3x" style="color: blueviolet;"></i></button>
         </div>
         
     </div>
@@ -154,126 +154,11 @@
         <button style="background-color: rgb(14, 118, 160); color: white"class="btn-info"><input id="fill-element-svg" name="Color Picker" type="color"/> Shape Color</button><br><br>
         <button class="btn-info" style="background-color: rgb(255, 79, 59);" id="remove-last">Remove Last</button><br><br>
         <button style="background-color: rgb(246, 248, 111); color: black;"id="remove" class="btn-info">Remove Selected</button>
+        <!-- <button style="background-color: rgb(221, 26, 101); color: black;"id="rotate" class="btn-info">Rotate Last Shape</button> -->
 
-
-      <!-- <div class="color-picker">
-        <form id="color-form">
-            <label for="r" >Red</label>
-            <input class="color-input" id="r" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" name="cvv" value="255"/>
-            <div class="slidecontainer">
-                <input class="sliders" type="range" min="0" max="255" value="255" class="slider" id="slider-r">
-            </div>
-            <label for="g">Green</label>
-            <input class="color-input" id="g" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" name="cvv" value="200"/>
-            <div class="slidecontainer">
-                <input class="sliders" type="range" min="0" max="255" value="200" class="slider" id="slider-g"> 
-            </div>
-            <label for="b">Blue</label>
-            <input class="color-input" id="b" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" name="cvv" value="0"/>
-            <div class="slidecontainer">
-                <input class="sliders" type="range" min="0" max="255" value="0" class="slider" id="slider-b">
-            </div>
-            <div class="color-box" id="color-box" style="background-color: rgb(255,200,0);">
-        </form>
-      </div> -->
-    </div>
 
 
 </div>
 
-<!-- Sidebar -->
-<!-- <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
-  <h3 class="w3-bar-item">All Paintings</h3>
-  <ul id="paintings-ul">
-    <img src="assets/p1.png" style="height:30%"><br> 
-    <img src="assets/p2.png" style="height:30%"><br>
-  </ul>
-</div> -->
 
-<!-- Page Content -->
-<!-- <div style="margin-left:25%">
-    <ul>
-        <li><h3>Painting with Picasso</h3></li>
-        <li style="float:right"><a class="active" href="#aboutus">About Us</a></li>
-        <li style="float:right"><a class="active" href="#mypaintings">My Paintings</a></li>
-        <li style="float:right" ><a id ="new-painting" class="active" href="#newpaintings">New Painting</a></li>
-      </ul> -->
 
-<!-- <img src="assets/picasso.png" alt="picasso" style="width:70%"> -->
-<!-- <div class='container center'>
-<div class="container"> 
-    <div class="row buffer-small">
-        
-    </div>
-</div>
-<div id="button-group">
-    <button class="btn-info">Select</button>
-    <button class="btn-info">Circle</button>
-    <button class="btn-info">Square</button>
-    <button class="btn-info">Custom Circle</button>
-    <button class="btn-info">Custom Square</button>
-    <button class="btn-info">Custom Path</button>
-    <div class="toolbox">
-        <div class="slidecontainer">
-        Size:   <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-        <span id="size-of-shape">50</span>
-        </div>
-    </div>
-</div>   -->
-<!-- <div class="row">
-    <div class="canvas-box" style="width: 800px">
-        <svg id="canvas-box" width="100%" height="100%">
-
-        </svg>
-    </div>
-    <div class="layers-panel">
-        <ul id="layers-list"></ul>
-    </div>
-</div> -->
-<!-- <div class="row">
-    <div class="properties-panel">
-        <p>Selected: <span id="shape-selected"></span></p>
-        <p>Width: <span id="shape-width"></span></p>
-        <p>Height: <span id="shape-height"></span></p>
-        <p>Color: <span id="shape-color"></span></p>
-        <button id="remove" class="btn-danger">Remove</button>
-        <form id="painting-name-form">
-            <label for="name">Painting Name</label><br>
-            <input type="text" id="name" name="name" ><br>
-          </form> 
-        <button id="save" >Save</button>
-          
-
-    </div> -->
-    <!-- <div class="color-picker">
-        <form id="color-form">
-            <label for="r" >Red</label>
-            <input class="color-input" id="r" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" name="cvv" value="255"/>
-            <div class="slidecontainer">
-                <input class="sliders" type="range" min="0" max="255" value="255" class="slider" id="slider-r">
-            </div>
-            <label for="g">Green</label>
-            <input class="color-input" id="g" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" name="cvv" value="200"/>
-            <div class="slidecontainer">
-                <input class="sliders" type="range" min="0" max="255" value="200" class="slider" id="slider-g"> 
-            </div>
-            <label for="b">Blue</label>
-            <input class="color-input" id="b" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" name="cvv" value="0"/>
-            <div class="slidecontainer">
-                <input class="sliders" type="range" min="0" max="255" value="0" class="slider" id="slider-b">
-            </div>
-            <div class="color-box" id="color-box" style="background-color: rgb(255,200,0);">
-        </form>
-        </div>
-    </div>
-</div>
-</div>
-
-<div class="w3-container">
-
-</div>
-
-</div>
-      
-</body>
-</html> -->
