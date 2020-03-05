@@ -243,9 +243,45 @@ img {
   color: white;
 }
 
-.btn-info {
+/* .btn-info {
   border-radius: 8px;
   color: white;
   border: 2px solid  rgb(161, 75, 241)
-  
+
+} */
+
+.btn-info {
+  display: inline-block; 
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: solid;
+  border-color: black;
+  border-radius: 15px;
+  box-shadow: 0 2px #999;
+}
+
+.btn-info:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#select-btn {
+  display: inline-block; 
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: rgb(2, 2, 2);
+  background-color: #4CAF50;
+  border: solid;
+  border-radius: 15px;
+  box-shadow: 0 2px #999;
 }

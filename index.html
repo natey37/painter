@@ -48,12 +48,12 @@
 
     <div class="grid-item" id="item3" style="text-align: center;">
         <div id="button-group" style="float: center;">
-            <button style="background-color: rgb(84, 96, 211)" class="btn-info">Custom Circle</button>
-            <button style="background-color: rgb(226, 43, 180)" class="btn-info">Custom Square</button>
-            <button style="background-color: rgb(189, 43, 226)"class="btn-info">Custom Ellipse</button>
-            <button style="background-color: rgb(43, 226, 171)" class="btn-info">Custom Triangle</button>
-            <button style="background-color: rgb(110, 226, 43)"class="btn-info">Custom Path</button><br>
-            <button style="background-color: blueviolet; margin-top: 10px;" class="btn-info">Select</button>
+            <button style="background-color: rgb(84, 96, 211);font-style: italic" class="btn-info">Custom Circle</button>
+            <button style="background-color: rgb(226, 43, 180);font-style: italic" class="btn-info">Custom Square</button>
+            <button style="background-color: rgb(189, 43, 226);font-style: italic"class="btn-info">Custom Ellipse</button>
+            <button style="background-color: rgb(43, 226, 171);font-style: italic" class="btn-info">Custom Triangle</button>
+            <button style="background-color: rgb(110, 226, 43);font-style: italic"class="btn-info">Custom Path</button><br>
+            <button id="select-btn" style="background-color: rgb(246, 248, 111); margin-top: 10px;" class="btn-info">Select</button>
             <button style="background-color: rgb(84, 96, 211)" class="btn-info">Circle</button>
             <button style="background-color: rgb(226, 43, 180)" class="btn-info">Square</button>
             <button style="background-color: rgb(189, 43, 226)" class="btn-info">Ellipse</button>
@@ -108,6 +108,26 @@
         Background Color: <input style="font-size: 15px;"  id="background-svg" name="Color Picker" type="color"/><br><br>
         <i   class="fas fa-shapes fa-3x"></i>  <input id="fill-element-svg" name="Color Picker" type="color"/><br><br>
         <button id="remove" class="btn-danger"><i class="fas fa-eraser fa-3x"></i></button>
+
+        <span class="fa-stack fa-2x">
+            <button id="remove" class="btn-danger"><i class="fas fa-eraser fa-2x"></i></button>
+                <span class="fa fa-stack-1x" style="color:red;">
+                    <span style="font-size:15px; margin-top:-100px; display:block;">
+                        Erase
+                    </span>
+                </span>
+        </span>
+
+
+        <span class="fa-stack fa-3x">
+            <i class="fa fa-trophy fa-stack-2x"></i>
+              <span class="fa fa-stack-1x" style="color:red;">
+                  <span style="font-size:35px; margin-top:-20px; display:block;">
+                      #1
+                  </span>
+            </span>
+        </span>	
+        
 
       <!-- <div class="color-picker">
         <form id="color-form">

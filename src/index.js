@@ -872,14 +872,29 @@ document.addEventListener("DOMContentLoaded", function(){
             .then(response => response.json())
             .then(response => {
                 // let userFavoritePaintingIds = selectedUser.favorites.map(fav => {fav.painting_id})
-                console.log(response)
-                console.log(response[0].favorites)
-               console.log(response.map(painting => painting.favorites))
-                let favs = response.map(painting => painting.favorites).flat()
-                console.log(favs)
-                let favsIds = favs.map(fav => fav.painting_id)
-                console.log(favsIds)
-                let myFavs = response.filter(painting => favsIds.includes(painting.id))
+            //     console.log(response)
+            //     console.log(response[0].favorites)
+            //    console.log(response.map(painting => painting.favorites))
+            //     let favs = response.map(painting => painting.favorites).flat()
+            //     console.log(favs)
+            //     let favsIds = favs.map(fav => fav.painting_id)
+            //     console.log(favsIds)
+            //     let myFavs = response.filter(painting => favsIds.includes(painting.id))
+            //     console.log(myFavs)
+            let favPaintings = []
+                response.forEach(function(painting) {
+                    console.log(painting)
+                    painting.favorites.forEach(function(favorite){
+                        console.log(favorite.user_id)
+                        
+                        if(favorite.user_id === selectedUser.id) {
+                            favPaintings.push(favorite)
+                        }
+                    })
+                })
+            let favPaintingsIds = favPaintings.map(fav => fav.painting_id)
+                console.log(favPaintingsIds)
+                let myFavs = response.filter(painting => favPaintingsIds.includes(painting.id))
                 console.log(myFavs)
                 let myPaintingsInnerHTML = myFavs.map(painting => {
                     return `
@@ -929,7 +944,7 @@ document.addEventListener("DOMContentLoaded", function(){
            let innerHTMLArr = response.map(painting => {
                return `
                <div id = "${painting.id}" class = "all-users-paintings">
-               <h6 id =${painting.id} class="svg-collection"> ${painting.name} - ${painting.user.name}  </h6>
+               <h6 style="margin: 0;" id =${painting.id} class="svg-collection"> ${painting.name} - ${painting.user.name}  </h6>
                <svg id =${painting.id} style = "background-color:${painting.background_color}"> ${painting.svgInner} </svg>
                <p> Likes: ${painting.favorites.length} </p>
                </div>
@@ -962,7 +977,7 @@ document.addEventListener("DOMContentLoaded", function(){
             let myPainting = allUserPaintings.find(painting => painting.id == selectedPaintingH.id)
             canvasDiv.innerHTML =
                         `
-                        <h1 style = "color: white"> ${myPainting.children[0].innerText} </h1>
+                        <h1 style = "color: white; margin: 0;"> ${myPainting.children[0].innerText} </h1>
                         <svg id="canvas-box" width="100%" height="100%" style= "background-color: ${myPainting.children[1].style.backgroundColor}"> 
                             ${myPainting.children[1].innerHTML}
                         </svg>
