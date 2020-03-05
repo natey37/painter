@@ -200,7 +200,7 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
 
             buildPath(pathBuilder)
             
-            if(pathBuilder.length > 6){
+            if(pathBuilder.length > 4){
                 pathBuilder.length = 0 
             }  
        }
@@ -341,7 +341,18 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
        cir1.setAttribute("r", currentSize);
        cir1.setAttribute("fill", fillElement.value);
        cir1.dataset["color"] = fillElement.value
-   
+    //     const animate = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+
+    //     animate.setAttribute("attributeName", "cx")
+    //     animate.setAttribute("from", "50")
+    //     animate.setAttribute("to", "450")
+    //     animate.setAttribute("dur", "1s")
+    //     animate.setAttribute("begin", "click")
+    //     animate.setAttribute("fill", "freeze")
+      
+
+    //    cir1.append(animate)
+    //     console.log(cir1.children)
        // attach it to the container
        svg1.appendChild(cir1);
    
@@ -976,11 +987,7 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
             let myPainting = allUserPaintings.find(painting => painting.id == selectedPaintingH.id)
             canvasDiv.innerHTML =
                         `
-<<<<<<< HEAD
                         <h1 style = "color: white; margin: 0;"> ${myPainting.children[0].innerText} </h1>
-=======
-                        <h1 style = "color: white"> ${myPainting.children[0].innerText}  </h1>
->>>>>>> 0e0e9eb97dfb42b280719acd91300a88c9205231
                         <svg id="canvas-box" width="100%" height="100%" style= "background-color: ${myPainting.children[1].style.backgroundColor}"> 
                             ${myPainting.children[1].innerHTML}
                         </svg>
@@ -996,5 +1003,17 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
         item5.style.visibility = "hidden"
         item6.style.visibility = "hidden"      
        }
+
+       const removeLast = document.getElementById("remove-last")
+       removeLast.addEventListener("click", () => {
+           const canvasBox = document.getElementById("canvas-box")
+           console.log(canvasBox)
+
+           let canvasBoxChildren = canvasBox.children 
+           console.log(canvasBoxChildren)
+        let canvasBoxChildrenReversed = [].slice.call(canvasBoxChildren, 0).reverse()
+        console.log(canvasBoxChildrenReversed)
+        canvasBoxChildrenReversed[0].remove()
+       })
 
    }) //end of DOM content loaded
