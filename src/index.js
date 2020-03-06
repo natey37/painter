@@ -4,8 +4,8 @@
 
 document.addEventListener("DOMContentLoaded", function(){
 
-var x = document.getElementById("myAudio"); 
-var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdown_alarm_42849.mp3');
+// var x = document.getElementById("myAudio"); 
+// var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdown_alarm_42849.mp3');
 
 
  let selectedUser = null 
@@ -341,6 +341,19 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
        cir1.setAttribute("r", currentSize);
        cir1.setAttribute("fill", fillElement.value);
        cir1.dataset["color"] = fillElement.value
+
+    //    const animateTransform = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform")
+    //    animateTransform.setAttribute("attributeName", "transform")
+    //    animateTransform.setAttribute("type", "translate")
+    //    animateTransform.setAttribute("from", "0 0")
+    //    animateTransform.setAttribute("to", "150 0")
+    //    animateTransform.setAttribute("begin", "0s")
+    //    animateTransform.setAttribute("dur", "2s")
+    //    animateTransform.setAttribute("repeatCount", "indefinite")
+    
+    // cir1.append(animateTransform)
+
+
     //     const animate = document.createElementNS("http://www.w3.org/2000/svg", "animate");
 
     //     animate.setAttribute("attributeName", "cx")
@@ -457,7 +470,7 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
              ellipse.setAttribute("ry", currentSize / 2)
              ellipse.setAttribute("fill", fillElement.value);
              ellipse.dataset["color"] = fillElement.value 
-
+        
 
            // attach it to the container
            svg1.appendChild(ellipse);
@@ -496,6 +509,10 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
          // set width and height
         svg1.setAttribute("x", x);
         svg1.setAttribute("y", y);
+        // svg1.setAttribute("width", "100%")
+        // svg1.setAttribute("length", "100%")
+
+
 
           // create an ellipse
           const ellipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
@@ -506,6 +523,7 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
           ellipse.setAttribute("ry", c / 2)
           ellipse.setAttribute("fill", fillElement.value);
           ellipse.dataset["color"] = fillElement.value 
+          
 
 
         // attach it to the container
@@ -822,7 +840,8 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
     
        document.addEventListener("click", function(event){
            if(event.target.id === "save"){
-               if(nameForm.children[2].value.length < 1){
+               console.log(nameForm.children[1].value)
+               if(nameForm.children[1].value.length < 1){
                     alert("A Painting needs a name!")
                } else {
                 console.log(svg)
@@ -949,7 +968,29 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
                .then(response => {
                 foundPainting.children[2].innerText = `Likes: ${likesNum}`
                })
+           } else if (event.target.id === "animate1"){
+            const canvasBox = document.getElementById("canvas-box")
+            let canvasBoxChildren = [].slice.call(canvasBox.children, 0)
+            console.log(canvasBoxChildren)
+            canvasBoxChildren.forEach(function(svg){
+                console.log(svg)
+                console.log(svg.children)
+                const animateTransform = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform")
+                animateTransform.setAttribute("attributeName", "transform")
+                animateTransform.setAttribute("type", "translate")
+                animateTransform.setAttribute("from", "0 0")
+                animateTransform.setAttribute("to", "150 0")
+                animateTransform.setAttribute("begin", "0s")
+                animateTransform.setAttribute("dur", "2s")
+                animateTransform.setAttribute("repeatCount", "indefinite")
+             
+             svg.children[0].append(animateTransform)
+            })
            }
+
+
+
+           
        })
 
        //render paintings in the UL function 
@@ -995,6 +1036,9 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
                             ${myPainting.children[1].innerHTML}
                         </svg>
                         <button id= "${myPainting.id}" class= "favorite-button"> Favorite </button>
+                        <button style="background-color: rgb(76, 240, 255); color: black;" id="animate1" class="btn-info">Animate</button>
+                        
+
                         `
 
             removeToolBars()
@@ -1020,20 +1064,86 @@ var audio = new Audio('./sounds/zapsplat_emergency_nuclear_power_station_meltdow
         canvasBoxChildrenReversed[0].remove()
        })
 
-       //rotate 
-       const rotate = document.getElementById("rotate")
-       rotate.addEventListener("click", () => {
-                const canvasBox = document.getElementById("canvas-box")
-                console.log(canvasBox)
+    //    //rotate 
+    //    const rotate = document.getElementById("rotate")
+    //    rotate.addEventListener("click", () => {
+    //             const canvasBox = document.getElementById("canvas-box")
+    //             console.log(canvasBox)
 
-                let canvasBoxChildren = canvasBox.children 
-                console.log(canvasBoxChildren)
-            let canvasBoxChildrenReversed = [].slice.call(canvasBoxChildren, 0).reverse()
-            console.log(canvasBoxChildrenReversed[0].children[0])
-            let test = canvasBoxChildrenReversed[0].children[0].setAttribute("transform", "rotate(-45 100 100)")
-            console.log(test)
+    //             let canvasBoxChildren = canvasBox.children 
+    //             console.log(canvasBoxChildren)
+    //         let canvasBoxChildrenReversed = [].slice.call(canvasBoxChildren, 0).reverse()
+    //         console.log(canvasBoxChildrenReversed[0].children[0])
+    //         let test = canvasBoxChildrenReversed[0].children[0].setAttribute("transform", "rotate(-45 100 100)")
+    //         console.log(test)
 
-       })
+    //    })
+
+    //animate 
+
+    const animate = document.getElementById("animate")
+    animate.addEventListener("click", () => {
+        const canvasBox = document.getElementById("canvas-box")
+        console.log(canvasBox)
+        console.log(canvasBox.children)
+        let canvasBoxChildren = [].slice.call(canvasBox.children, 0)
+        console.log(canvasBoxChildren)
+        canvasBoxChildren.forEach(function(svg){
+            console.log(svg.children)
+            const animateTransform = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform")
+            animateTransform.setAttribute("attributeName", "transform")
+            animateTransform.setAttribute("type", "translate")
+            animateTransform.setAttribute("from", "0 0")
+            animateTransform.setAttribute("to", "150 0")
+            animateTransform.setAttribute("begin", "0s")
+            animateTransform.setAttribute("dur", "2s")
+            animateTransform.setAttribute("repeatCount", "indefinite")
+         
+         svg.children[0].append(animateTransform)
+        })
+        console.log(canvasBoxChildren)
+
+    })
+
+    const stopAnimate = document.getElementById("stop-animate")
+    stopAnimate.addEventListener("click", () => {
+        console.log(stopAnimate)
+        const canvasBox = document.getElementById("canvas-box")
+        let canvasBoxChildren = [].slice.call(canvasBox.children, 0)
+        canvasBoxChildren.forEach(function(svg){
+            console.log(svg.children[0].children[0])
+            svg.children[0].children[0].remove()
+    
+         
+        })
+    })
+
+
+    // const animate1 = document.getElementById("animate1")
+    // console.log(animate1)
+    // animate1.addEventListener("click", function(event){
+    //     console.log(event.target)
+    //     const canvasBox = document.getElementById("canvas-box")
+    //     console.log(canvasBox)
+    //     console.log(canvasBox.children)
+    //     let canvasBoxChildren = [].slice.call(canvasBox.children, 0)
+    //     console.log(canvasBoxChildren)
+    //     canvasBoxChildren.forEach(function(svg){
+    //         console.log(svg.children)
+    //         const animateTransform = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform")
+    //         animateTransform.setAttribute("attributeName", "transform")
+    //         animateTransform.setAttribute("type", "translate")
+    //         animateTransform.setAttribute("from", "0 0")
+    //         animateTransform.setAttribute("to", "150 0")
+    //         animateTransform.setAttribute("begin", "0s")
+    //         animateTransform.setAttribute("dur", "2s")
+    //         animateTransform.setAttribute("repeatCount", "indefinite")
+         
+    //      svg.children[0].append(animateTransform)
+    //     })
+    //     console.log(canvasBoxChildren)
+
+    // })
 
 
    }) //end of DOM content loaded
