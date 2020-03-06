@@ -459,7 +459,8 @@ document.addEventListener("DOMContentLoaded", function(){
             // set width and height
            svg1.setAttribute("x", x);
            svg1.setAttribute("y", y);
-           
+        svg1.setAttribute("height", "300")
+        svg1.setAttribute("width", "300")
 
              // create an ellipse
              const ellipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
@@ -840,8 +841,9 @@ document.addEventListener("DOMContentLoaded", function(){
     
        document.addEventListener("click", function(event){
            if(event.target.id === "save"){
-               console.log(nameForm.children[1].value)
-               if(nameForm.children[1].value.length < 1){
+               console.log(nameForm.children)
+               console.log(nameForm.children[0].value)
+               if(nameForm.children[0].value.length < 1){
                     alert("A Painting needs a name!")
                } else {
                 console.log(svg)
@@ -849,7 +851,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 console.log(svg.style.backgroundColor)
                 let paintingObj = 
                     {
-                        name: nameForm.children[2].value,
+                        name: nameForm.children[1].value,
                         svgInner: svg.innerHTML,
                         background_color: svgBackgroundColor,  
                         user_id: selectedUser.id
@@ -1073,9 +1075,13 @@ document.addEventListener("DOMContentLoaded", function(){
     //             let canvasBoxChildren = canvasBox.children 
     //             console.log(canvasBoxChildren)
     //         let canvasBoxChildrenReversed = [].slice.call(canvasBoxChildren, 0).reverse()
-    //         console.log(canvasBoxChildrenReversed[0].children[0])
-    //         let test = canvasBoxChildrenReversed[0].children[0].setAttribute("transform", "rotate(-45 100 100)")
+    //         console.log(canvasBoxChildrenReversed[0])
+    //         let test = canvasBoxChildrenReversed[0].setAttribute("transform", "scale(4)")
+    //         canvasBoxChildrenReversed[0].setAttribute("height", "300")
+    //         canvasBoxChildrenReversed[0].setAttribute("width", "300")
+    //         let test2 = canvasBoxChildrenReversed[0].children[0].setAttribute("transform", "rotate(45)")
     //         console.log(test)
+    //         console.log(test2)
 
     //    })
 
